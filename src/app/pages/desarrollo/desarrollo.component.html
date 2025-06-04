@@ -1,0 +1,176 @@
+<app-header></app-header>
+
+<div class="container">
+    <app-sidebar></app-sidebar>
+    <main class="main-content">
+        <h1 class="page-title">Mi Desarrollo</h1>
+
+        <div class="development-grid">
+            <div class="content-card">
+                <h2 class="section-title">Habilidades y Competencias</h2>
+
+                <div class="skill-item">
+                    <div class="progress-text">
+                        <span class="skill-name">Liderazgo</span>
+                        <span class="skill-level">75%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 75%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="progress-text">
+                        <span class="skill-name">Comunicación</span>
+                        <span class="skill-level">85%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 85%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="progress-text">
+                        <span class="skill-name">Trabajo en Equipo</span>
+                        <span class="skill-level">90%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 90%"></div>
+                    </div>
+                </div>
+
+                <div class="skill-item">
+                    <div class="progress-text">
+                        <span class="skill-name">Resolución de Problemas</span>
+                        <span class="skill-level">70%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 70%"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-card">
+                <h2 class="section-title">Objetivos de Desarrollo</h2>
+                <ul class="goals-list">
+                    <li class="goal-item">
+                        <div class="goal-title">Certificación en Gestión de Proyectos</div>
+                        <div class="goal-description">Obtener certificación PMP para mejorar habilidades de gestión
+                        </div>
+                        <div class="goal-deadline">Meta: Marzo 2024</div>
+                    </li>
+                    <li class="goal-item">
+                        <div class="goal-title">Curso de Liderazgo Avanzado</div>
+                        <div class="goal-description">Completar programa de 40 horas en liderazgo estratégico</div>
+                        <div class="goal-deadline">Meta: Febrero 2024</div>
+                    </li>
+                    <li class="goal-item">
+                        <div class="goal-title">Mentoring de Equipo</div>
+                        <div class="goal-description">Participar como mentor de 2 colaboradores junior</div>
+                        <div class="goal-deadline">Meta: Abril 2024</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h2 class="section-title">Cursos Disponibles</h2>
+            <div class="courses-grid">
+                <div class="course-card">
+                    <div class="course-header">
+                        <div class="course-icon">📚</div>
+                        <div class="course-info">
+                            <h3>Liderazgo Transformacional</h3>
+                            <p>20 horas • Intermedio</p>
+                        </div>
+                    </div>
+                    <div class="course-progress">
+                        <div class="progress-text">
+                            <span>Progreso</span>
+                            <span>60%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 60%"></div>
+                        </div>
+                    </div>
+                    <div class="course-actions">
+                        <button class="btn btn-primary" onclick="continueCourse(1)">Continuar</button>
+                        <button class="btn btn-secondary" onclick="viewCourse(1)">Ver Detalles</button>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-header">
+                        <div class="course-icon">🎯</div>
+                        <div class="course-info">
+                            <h3>Gestión del Tiempo</h3>
+                            <p>15 horas • Básico</p>
+                        </div>
+                    </div>
+                    <div class="course-progress">
+                        <div class="progress-text">
+                            <span>Progreso</span>
+                            <span>0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="course-actions">
+                        <button class="btn btn-primary" onclick="startCourse(2)">Comenzar</button>
+                        <button class="btn btn-secondary" onclick="viewCourse(2)">Ver Detalles</button>
+                    </div>
+                </div>
+
+                <div class="course-card">
+                    <div class="course-header">
+                        <div class="course-icon">💡</div>
+                        <div class="course-info">
+                            <h3>Innovación y Creatividad</h3>
+                            <p>25 horas • Avanzado</p>
+                        </div>
+                    </div>
+                    <div class="course-progress">
+                        <div class="progress-text">
+                            <span>Progreso</span>
+                            <span>100%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%"></div>
+                        </div>
+                    </div>
+                    <div class="course-actions">
+                        <button class="btn btn-secondary" onclick="downloadCertificate(3)">Certificado</button>
+                        <button class="btn btn-secondary" onclick="viewCourse(3)">Ver Detalles</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-card">
+            <h2 class="section-title">Logros y Certificaciones</h2>
+            <div class="achievements">
+                <div class="achievement-item">
+                    <div class="achievement-icon">🏆</div>
+                    <div class="achievement-title">Liderazgo Efectivo</div>
+                    <div class="achievement-date">Dic 2023</div>
+                </div>
+                <div class="achievement-item">
+                    <div class="achievement-icon">⭐</div>
+                    <div class="achievement-title">Comunicación Asertiva</div>
+                    <div class="achievement-date">Nov 2023</div>
+                </div>
+                <div class="achievement-item">
+                    <div class="achievement-icon">🎖️</div>
+                    <div class="achievement-title">Trabajo en Equipo</div>
+                    <div class="achievement-date">Oct 2023</div>
+                </div>
+                <div class="achievement-item">
+                    <div class="achievement-icon">📜</div>
+                    <div class="achievement-title">Gestión de Conflictos</div>
+                    <div class="achievement-date">Sep 2023</div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>

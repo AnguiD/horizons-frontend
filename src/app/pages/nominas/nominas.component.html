@@ -1,0 +1,39 @@
+<app-header></app-header>
+<div class="container">
+    <app-sidebar></app-sidebar>
+
+    <main class="main-content">
+        <h1 class="page-title">Mis Recibos de Nómina</h1>
+
+        <div class="card-nomina">
+            <div class="nomina-header">
+                <input type="month" class="month-selector" [(ngModel)]="selectedMonth"
+                    placeholder="Selecciona un mes" />
+
+                <input type="text" class="search-input" [(ngModel)]="searchText" placeholder="Buscar nómina..." />
+            </div>
+
+            <table class="nomina-table">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Fecha de Emisión</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let n of filteredNominas">
+                        <td>{{ n.nombre }}</td>
+                        <td>{{ n.fecha }}</td>
+                        <td>
+                            <button class="btn-preview" (click)="verPDF(n)">Vista previa</button>
+                        </td>
+                    </tr>
+                    <tr *ngIf="filteredNominas.length === 0">
+                        <td colspan="3" class="no-results">No se encontraron nóminas</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</div>
