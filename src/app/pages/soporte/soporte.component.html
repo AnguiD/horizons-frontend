@@ -1,0 +1,49 @@
+<app-header></app-header>
+
+<div class="container">
+    <app-sidebar></app-sidebar>
+
+    <main class="main-content">
+        <h1 class="page-title">Soporte Técnico</h1>
+
+        <div class="formulario">
+            <h2 class="section-title">Crear Nuevo Ticket</h2>
+            <input type="text" placeholder="Asunto" [(ngModel)]="nuevoTicket.asunto" />
+            <textarea rows="3" placeholder="Descripción del problema" [(ngModel)]="nuevoTicket.descripcion"></textarea>
+            <button class="btn-primary" (click)="enviarTicket()">Enviar Ticket</button>
+        </div>
+
+        <div class="listado">
+            <h2 class="section-title">Seguimiento de Tickets</h2>
+            <input type="text" class="search" [(ngModel)]="busqueda" placeholder="Buscar por asunto o descripción..." />
+
+            <table class="ticket-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Asunto</th>
+                        <th>Descripción</th>
+                        <th>Estatus</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let ticket of ticketsFiltrados">
+                        <td>{{ ticket.id }}</td>
+                        <td>{{ ticket.asunto }}</td>
+                        <td>{{ ticket.descripcion }}</td>
+                        <td>
+                            <span class="badge" [ngClass]="{
+            'pendiente': ticket.estado === 'Pendiente',
+            'proceso': ticket.estado === 'En proceso',
+            'resuelto': ticket.estado === 'Resuelto'
+            }">{{ ticket.estado }}</span>
+                        </td>
+                    </tr>
+                    <tr *ngIf="ticketsFiltrados.length === 0">
+                        <td colspan="4" class="no-results">No se encontraron tickets</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+</div>

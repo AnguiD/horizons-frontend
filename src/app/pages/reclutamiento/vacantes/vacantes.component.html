@@ -1,0 +1,78 @@
+<app-header></app-header>
+<div class="container">
+  <app-sidebar></app-sidebar>
+  <main class="main-content">
+    <div class="page-header">
+      <h1 class="page-title">Gestión de Vacantes</h1>
+      <div class="header-actions">
+        <button class="btn-primary" (click)="nuevoVacante()">
+          Nueva Vacante
+        </button>
+        <button class="btn-outline" (click)="exportarPDF()">
+          Exportar a PDF
+        </button>
+      </div>
+    </div>
+
+    <div class="vacantes-card">
+      <table class="vacantes-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Título</th>
+            <th>Área</th>
+            <th>Fecha Inicio</th>
+            <th>Fecha Fin</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let vac of vacantes">
+            <td>{{ vac.id }}</td>
+            <td>{{ vac.titulo }}</td>
+            <td>{{ vac.area }}</td>
+            <td>{{ vac.fechaInicio | date : "dd MMM yyyy" }}</td>
+            <td>{{ vac.fechaFin | date : "dd MMM yyyy" }}</td>
+            <td>
+              <span
+                [ngClass]="{
+                  'status-activa': vac.estado === 'Activa',
+                  'status-cerrada': vac.estado === 'Cerrada'
+                }"
+                >{{ vac.estado }}</span
+              >
+            </td>
+            <td class="actions-cell">
+              <button
+                class="btn-icon"
+                title="Editar"
+                (click)="editarVacante(vac.id)"
+              >
+                ✎
+              </button>
+              <button
+                class="btn-icon"
+                title="Eliminar"
+                (click)="eliminarVacante(vac.id)"
+              >
+                🗑️
+              </button>
+              <button
+                class="btn-small"
+                title="Ver Aspirantes"
+                (click)="verAspirantes(vac.id)"
+              >
+                Aspirantes
+              </button>
+            </td>
+          </tr>
+          <tr *ngIf="vacantes.length === 0">
+            <td colspan="7" class="no-records">No hay vacantes registradas</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+<div class="version-info">horizons 1.0.0</div>

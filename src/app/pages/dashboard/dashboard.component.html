@@ -1,0 +1,190 @@
+<app-header></app-header>
+
+<div class="container">
+    <app-sidebar></app-sidebar>
+
+    <main class="main-content">
+        <div class="welcome-section">
+            <h1 class="welcome-title">Hola Usuario Badak!</h1>
+            <p class="welcome-subtitle">Tienes pendientes por atender</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <img src="assets/vacaciones.png" alt="Pendientes" class="stat-icon" />
+                </div>
+                <div class="stat-content">
+                    <h3>5</h3>
+                    <p>Vacaciones Pendientes</p>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <img src="assets/evaluacion.png" alt="Evaluaciones" class="stat-icon" />
+                </div>
+                <div class="stat-content">
+                    <h3>12</h3>
+                    <p>Evaluaciones Pendientes</p>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <img src="assets/curso.png" alt="Feedbacks" class="stat-icon">
+                </div>
+                <div class="stat-content">
+                    <h3>2</h3>
+                    <p>Cursos Pendientes</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-grid">
+            <div class="chart-section">
+                <div class="chart-header">
+                    <h2 class="chart-title">Progreso</h2>
+                    <div class="chart-legend">
+                        <div class="legend-item">
+                            <div class="legend-dot progress"></div>
+                            <span>Mi progreso</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-dot target"></div>
+                            <span>Promedio</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="chart-section">
+                    <app-progress-chart></app-progress-chart>
+                </div>
+                <div class="feedback-section">
+                    <table class="feedback-table">
+                        <thead>
+                            <tr>
+                                <th>Feedbacks</th>
+                                <th>Tipo</th>
+                                <th>Estatus</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="feedback-user">
+                                    <img src="assets/mujer.png" alt="Paulina Gómez" class="avatar" />
+                                    <span title="Paulina Gómez Martínez">Paulina Gómez Martínez</span>
+                                </td>
+                                <td>Solicitado</td>
+                                <td class="status pending">
+                                    Pendiente
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M10 17l5-5-5-5v10z" />
+                                    </svg>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="feedback-user">
+                                    <img src="assets/hombre.png" alt="Juan Carlos Salgado" class="avatar" />
+                                    Juan Carlos Salgado
+                                </td>
+                                <td>Recibido</td>
+                                <td class="status pending">
+                                    Pendiente
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                        <path d="M10 17l5-5-5-5v10z" />
+                                    </svg>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="sidebar-right">
+                <div class="info-card">
+                    <h3>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                        </svg>
+                        Metas PDP
+                    </h3>
+                    <div class="meta-info">
+                        <div class="meta-score">3.5</div>
+                        <div class="meta-name">Norma Perez Salgado</div>
+                    </div>
+                    <ul class="progress-list">
+                        <li class="progress-item">
+                            <span class="progress-label">1. Enfoque al cliente</span>
+                            <span class="progress-value">23%</span>
+                        </li>
+                        <li class="progress-item">
+                            <span class="progress-label">2. Liderazgo inspirador</span>
+                            <span class="progress-value">5%</span>
+                        </li>
+                        <li class="progress-item">
+                            <span class="progress-label">3. Escucha activa</span>
+                            <span class="progress-value">7%</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="info-card">
+                    <h3>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" />
+                        </svg>
+                        Último Recibo Nómina
+                    </h3>
+                    <div class="recent-item">
+                        <div class="recent-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" />
+                            </svg>
+                        </div>
+                        <div class="recent-content">
+                            <h4>2024-04-15-0125.pdf</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h3>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z" />
+                        </svg>
+                        Solicitudes Pendientes
+                    </h3>
+                    <div class="meta-info">
+                        <div class="meta-score">2</div>
+                    </div>
+                </div>
+
+                <div class="info-card">
+                    <h3>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                        </svg>
+                        Equipo Asignado
+                    </h3>
+                    <div class="recent-item">
+                        <div class="recent-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path
+                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                            </svg>
+                        </div>
+                        <div class="recent-content">
+                            <h4>MacBook MZ 2023</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<div class="version-info">
+    horizons 1.0.0
+</div>

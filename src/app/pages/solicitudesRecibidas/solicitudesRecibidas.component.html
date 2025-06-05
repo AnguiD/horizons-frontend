@@ -1,0 +1,48 @@
+<!-- solicitudes-recibidas.component.html -->
+<app-header></app-header>
+<div class="container">
+  <app-sidebar></app-sidebar>
+  <main class="main-content">
+    <div class="page-header">
+      <h1 class="page-title">Solicitudes Recibidas</h1>
+    </div>
+
+    <div class="requests-card">
+      <table class="requests-table">
+        <thead>
+          <tr>
+            <th>Empleado</th>
+            <th>Tipo de Solicitud</th>
+            <th>Fecha Inicio</th>
+            <th>Fecha Fin</th>
+            <th>Detalles</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let req of solicitudesRecibidas">
+            <td>{{ req.empleado }}</td>
+            <td>{{ req.tipo }}</td>
+            <td>{{ req.fechaInicio | date : "dd MMM yyyy" }}</td>
+            <td>{{ req.fechaFin | date : "dd MMM yyyy" }}</td>
+            <td>{{ req.detalle }}</td>
+            <td class="actions-cell">
+              <button class="btn-accept" (click)="acceptRequest(req.id)">
+                Aceptar
+              </button>
+              <button class="btn-reject" (click)="rejectRequest(req.id)">
+                Rechazar
+              </button>
+            </td>
+          </tr>
+          <tr *ngIf="solicitudesRecibidas.length === 0">
+            <td colspan="6" class="no-requests">
+              No hay solicitudes pendientes
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+<div class="version-info">horizons 1.0.0</div>

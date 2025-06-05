@@ -1,0 +1,131 @@
+<app-header></app-header>
+<div class="container">
+  <app-sidebar></app-sidebar>
+  <main class="main-content">
+    <h1 class="page-title">Mis Seguros</h1>
+
+    <div class="emergency-contact">
+      <div class="emergency-title">🚨 Contactos de Emergencia</div>
+      <div class="emergency-info">
+        <div
+          class="emergency-item"
+          *ngFor="let contacto of contactosEmergencia"
+        >
+          <span class="emergency-icon">{{ contacto.icono }}</span>
+          <div class="emergency-text">
+            <div class="emergency-label">{{ contacto.titulo }}</div>
+            <div class="emergency-value">{{ contacto.valor }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="insurance-overview">
+      <div class="overview-card" *ngFor="let card of resumenSeguros">
+        <div class="overview-icon">{{ card.icono }}</div>
+        <div class="overview-title">{{ card.nombre }}</div>
+        <div
+          class="overview-status"
+          [ngClass]="{
+            'status-active': card.estado === 'Activo',
+            'status-pending': card.estado === 'Pendiente'
+          }"
+        >
+          {{ card.estado }}
+        </div>
+      </div>
+    </div>
+
+    <div class="insurance-grid">
+      <div class="insurance-card" *ngFor="let seguro of seguros">
+        <div class="insurance-header">
+          <div class="insurance-title">
+            <div class="insurance-icon">{{ seguro.icono }}</div>
+            <div>
+              <div class="insurance-name">{{ seguro.nombre }}</div>
+              <div class="insurance-provider">{{ seguro.proveedor }}</div>
+            </div>
+          </div>
+          <div
+            class="overview-status"
+            [ngClass]="{
+              'status-active': seguro.estado === 'Activo',
+              'status-pending': seguro.estado === 'Pendiente'
+            }"
+          >
+            {{ seguro.estado }}
+          </div>
+        </div>
+
+        <div class="insurance-details">
+          <div class="detail-group">
+            <div class="detail-label">Número de Póliza</div>
+            <div class="detail-value">{{ seguro.politza }}</div>
+          </div>
+          <div class="detail-group">
+            <div class="detail-label">Vigencia</div>
+            <div class="detail-value">{{ seguro.vigencia }}</div>
+          </div>
+          <div class="detail-group">
+            <div class="detail-label">Suma Asegurada</div>
+            <div class="detail-value">{{ seguro.sumaAsegurada }}</div>
+          </div>
+          <div *ngIf="seguro.deducible" class="detail-group">
+            <div class="detail-label">Deducible</div>
+            <div class="detail-value">{{ seguro.deducible }}</div>
+          </div>
+          <div *ngIf="seguro.beneficiarios !== null" class="detail-group">
+            <div class="detail-label">Beneficiarios</div>
+            <div class="detail-value">
+              {{ seguro.beneficiarios }} registrados
+            </div>
+          </div>
+        </div>
+
+        <div class="coverage-list">
+          <div class="coverage-title">Coberturas Incluidas</div>
+          <div class="coverage-items">
+            <div
+              class="coverage-item"
+              *ngFor="let cobertura of seguro.coberturas"
+            >
+              <span class="coverage-check">✓</span>
+              <span>{{ cobertura }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="insurance-actions">
+          <button class="btn btn-primary" (click)="viewPolicy(seguro.id)">
+            Ver Póliza
+          </button>
+          <button
+            *ngIf="seguro.tipo === 'Médico'"
+            class="btn btn-secondary"
+            (click)="downloadCard(seguro.id)"
+          >
+            Descargar Tarjeta
+          </button>
+          <button
+            *ngIf="seguro.tipo === 'Vida'"
+            class="btn btn-secondary"
+            (click)="manageBeneficiaries(seguro.id)"
+          >
+            Gestionar Beneficiarios
+          </button>
+          <button
+            class="btn btn-outline"
+            (click)="secondaryAction(seguro.id, seguro.tipo)"
+          >
+            {{
+              seguro.tipo === "Médico"
+                ? "Red de Proveedores"
+                : "Solicitar Siniestro"
+            }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<div class="version-info">horizons 1.0.0</div>
