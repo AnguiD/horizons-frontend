@@ -1,0 +1,16 @@
+<app-header></app-header>
+
+<div class="create-container">
+  <div class="create-box">
+    <h2>Editar Empresa</h2>
+    <form #f="ngForm">
+      <input name="nombre"    [(ngModel)]="empresa.nombre"    placeholder="Nombre"   required />
+      <input name="direccion" [(ngModel)]="empresa.direccion" placeholder="Dirección"required />
+      <input name="telefono"  [(ngModel)]="empresa.telefono"  placeholder="Teléfono" required />
+      <input name="email"     [(ngModel)]="empresa.email"     type="email"  placeholder="Email"    required />
+      <button class="save-btn" type="button" (click)="update()">Actualizar</button>
+      <button class="cancel-link" type="button" (click)="cancel()">Cancelar</button>
+    </form>
+  </div>
+</div>
+

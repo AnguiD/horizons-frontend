@@ -72,6 +72,32 @@
 
     <li class="dropdown">
       <a
+        (click)="toggleEmpresas()"
+        class="dropdown-toggle"
+        [class.active]="isEmpresasOpen"
+      >
+        <svg class="sidebar-icon" viewBox="0 0 24 24">
+          <path d="M3 13h2v-2H3v2zm4 0h14v-2H7v2zm0-4h14V7H7v2zM3 9h2V7H3v2zm0 8h2v-2H3v2zm4 0h14v-2H7v2z"/>
+        </svg>
+        Gestión de Empresas
+        <span class="arrow" [class.rotate]="isEmpresasOpen">›</span>
+      </a>
+      <ul class="submenu" *ngIf="isEmpresasOpen">
+        <li>
+          <a routerLink="/empresas" routerLinkActive="active">
+            Listado de Empresas
+          </a>
+        </li>
+        <li>
+          <a routerLink="/empresas/crear" routerLinkActive="active">
+            Nueva Empresa
+          </a>
+        </li>
+      </ul>
+    </li>
+
+    <li class="dropdown">
+      <a
         (click)="toggleEmpleado()"
         class="dropdown-toggle"
         [class.active]="isEmpleadoOpen"

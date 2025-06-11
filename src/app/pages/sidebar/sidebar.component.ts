@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 export class SidebarComponent {
 [x: string]: any;
   isEmpleadoOpen = false;
+   isEmpresasOpen = false;
 
   toggleEmpleado() {
     this.isEmpleadoOpen = !this.isEmpleadoOpen;
@@ -20,5 +21,8 @@ export class SidebarComponent {
   isReclutamientoOpen = false;
   toggleReclutamiento() {
     this.isReclutamientoOpen = !this.isReclutamientoOpen;
+  }
+  toggleEmpresas() {
+    this.isEmpresasOpen = !this.isEmpresasOpen;
   }
 }

@@ -1,0 +1,14 @@
+<app-header></app-header>
+
+<div class="detail-container">
+  <div class="detail-box">
+    <h2>Detalle de Empresa</h2>
+    <div class="detail-item"><strong>ID:</strong> {{ id }}</div>
+    <div class="detail-item"><strong>Nombre:</strong> {{ empresa.nombre }}</div>
+    <div class="detail-item"><strong>Dirección:</strong> {{ empresa.direccion }}</div>
+    <div class="detail-item"><strong>Teléfono:</strong> {{ empresa.telefono }}</div>
+    <div class="detail-item"><strong>Email:</strong> {{ empresa.email }}</div>
+    <button class="back-btn" (click)="goBack()">← Volver</button>
+  </div>
+</div>
+
