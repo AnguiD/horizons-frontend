@@ -1,0 +1,177 @@
+<!-- evaluaciones.component.html -->
+<app-header></app-header>
+<div class="container">
+  <app-sidebar></app-sidebar>
+  <main class="main-content">
+    <h1 class="page-title">Mis Evaluaciones</h1>
+
+    <div class="evaluation-summary">
+      <div class="summary-card">
+        <div class="summary-number">{{ resumen.promedio }}</div>
+        <div class="summary-label">Promedio General</div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-number">{{ resumen.completadas }}</div>
+        <div class="summary-label">Evaluaciones Completadas</div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-number">{{ resumen.pendientes }}</div>
+        <div class="summary-label">Pendientes</div>
+      </div>
+      <div class="summary-card">
+        <div class="summary-number">{{ resumen.cumplimiento }}</div>
+        <div class="summary-label">Cumplimiento</div>
+      </div>
+    </div>
+
+    <div class="content-grid">
+      <div class="content-card">
+        <h2 class="section-title">Evaluaciones Recientes</h2>
+
+        <div
+          class="evaluation-item"
+          *ngFor="let eval of evaluacionesRecientes"
+        >
+          <div class="evaluation-header">
+            <div class="evaluation-title">{{ eval.titulo }}</div>
+            <div
+              class="evaluation-status"
+              [ngClass]="{
+                'status-pending': eval.estado === 'Pendiente',
+                'status-completed': eval.estado === 'Completada',
+                'status-overdue': eval.estado === 'Vencida'
+              }"
+            >
+              {{ eval.estado }}
+            </div>
+          </div>
+          <div class="evaluation-details">
+            <div class="detail-item">
+              <div class="detail-label">Evaluador</div>
+              <div class="detail-value">{{ eval.evaluador }}</div>
+            </div>
+            <div class="detail-item" *ngIf="eval.fechaLimite">
+              <div class="detail-label">Fecha Límite</div>
+              <div class="detail-value">{{ eval.fechaLimite | date:'dd MMM yyyy' }}</div>
+            </div>
+            <div class="detail-item" *ngIf="eval.fecha">
+              <div class="detail-label">Fecha</div>
+              <div class="detail-value">{{ eval.fecha | date:'dd MMM yyyy' }}</div>
+            </div>
+            <div class="detail-item">
+              <div class="detail-label">Tipo</div>
+              <div class="detail-value">{{ eval.tipo }}</div>
+            </div>
+            <div
+              class="detail-item"
+              *ngIf="eval.progreso !== undefined"
+            >
+              <div class="detail-label">Progreso</div>
+              <div class="detail-value">{{ eval.progreso }}%</div>
+            </div>
+            <div
+              class="detail-item"
+              *ngIf="eval.calificacion"
+            >
+              <div class="detail-label">Calificación</div>
+              <div class="detail-value">{{ eval.calificacion }}</div>
+            </div>
+            <div
+              class="detail-item"
+              *ngIf="eval.prioridad"
+            >
+              <div class="detail-label">Prioridad</div>
+              <div class="detail-value">{{ eval.prioridad }}</div>
+            </div>
+          </div>
+          <div class="evaluation-actions">
+            <button
+              class="btn btn-primary"
+              *ngIf="eval.estado === 'Pendiente'"
+              (click)="continueEvaluation(eval.id)"
+            >
+              Continuar
+            </button>
+            <button
+              class="btn btn-secondary"
+              *ngIf="eval.estado === 'Pendiente'"
+              (click)="viewDetails(eval.id)"
+            >
+              Ver Detalles
+            </button>
+
+            <button
+              class="btn btn-secondary"
+              *ngIf="eval.estado === 'Completada'"
+              (click)="viewResults(eval.id)"
+            >
+              Ver Resultados
+            </button>
+            <button
+              class="btn btn-secondary"
+              *ngIf="eval.estado === 'Completada'"
+              (click)="downloadReport(eval.id)"
+            >
+              Descargar
+            </button>
+
+            <button
+              class="btn btn-primary"
+              *ngIf="eval.estado === 'Vencida'"
+              (click)="startEvaluation(eval.id)"
+            >
+              Completar Ahora
+            </button>
+            <button
+              class="btn btn-secondary"
+              *ngIf="eval.estado === 'Vencida'"
+              (click)="requestExtension(eval.id)"
+            >
+              Solicitar Extensión
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="content-card">
+          <h2 class="section-title">Rendimiento Histórico</h2>
+          <div class="performance-placeholder">
+            <p>No hay gráfico disponible</p>
+          </div>
+          <ul class="metrics-list">
+            <li class="metric-item" *ngFor="let m of metricas">
+              <span class="metric-name">{{ m.nombre }}</span>
+              <span class="metric-score">{{ m.puntuacion }}</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="content-card" style="margin-top: 1.5rem;">
+          <h2 class="section-title">Próximas Evaluaciones</h2>
+          <div *ngIf="proximasEvaluaciones.length === 0" class="no-upcoming">
+            <div class="no-icon">📅</div>
+            <div>No hay evaluaciones programadas</div>
+            <div class="no-text">
+              Las próximas evaluaciones aparecerán aquí
+            </div>
+          </div>
+          <div *ngIf="proximasEvaluaciones.length > 0">
+            <div
+              class="upcoming-item"
+              *ngFor="let pe of proximasEvaluaciones"
+            >
+              <div class="upcoming-title">{{ pe.titulo }}</div>
+              <div class="upcoming-date">
+                {{ pe.fecha | date:'dd MMM yyyy' }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<div class="version-info">
+  horizons 1.0.0
+</div>

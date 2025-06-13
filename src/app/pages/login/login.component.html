@@ -22,6 +22,43 @@
       <form>
         <input type="email" placeholder="usuario@empresa.com" />
         <input type="password" placeholder="••••••••" />
+        <a href="/recuperar-password" class="forgot-link">¿Olvidaste tu contraseña?</a>
+        <button type="button" class="login-btn" (click)="entrar()">Entrar</button>
+      </form>
+
+      <div class="divider">o accede con</div>
+
+      <button class="google-btn">
+        <img src="https://img.icons8.com/color/16/000000/google-logo.png" />
+        Google
+      </button>
+    </div>
+  </div>
+</div>
+<nav class="navbar">
+  <div class="nav-left">
+    <a class="nav-link active" routerLink="/login">Inicio</a>
+    <a class="nav-link" href="https://badak.mx">Pagina</a>
+    <a class="nav-link" (click)="irAContacto()">Contacto</a>
+  </div>
+  <div class="nav-right">
+    <button class="lang-btn">ES</button>
+  </div>
+</nav>
+<div class="container">
+  <div class="left">
+    <h1>Future Horizons</h1>
+    <p>Tu equipo en evolución, tu empresa en ascenso!</p>
+    <img src="assets/login-ilustracion.png" alt="Ilustración Logo Empresa" />
+  </div>
+
+  <div class="right">
+    <div class="login-box">
+      <h2>Iniciar sesión</h2>
+
+      <form>
+        <input type="email" placeholder="usuario@empresa.com" />
+        <input type="password" placeholder="••••••••" />
         <a href="#" class="forgot-link">¿Olvidaste tu contraseña?</a>
         <button type="button" class="login-btn" (click)="entrar()">Entrar</button>
       </form>

@@ -1,0 +1,114 @@
+<app-header></app-header>
+<div class="container">
+  <app-sidebar></app-sidebar>
+  <main class="main-content">
+    <h1 class="page-title">Seguimiento de Aspirantes</h1>
+
+    <div class="filtros-card">
+      <form
+        [formGroup]="formularioFiltro"
+        (ngSubmit)="aplicarFiltros()"
+        class="filtros-form"
+      >
+        <div class="form-row">
+          <div class="form-group">
+            <label for="experiencia">Experiencia</label>
+            <input
+              id="experiencia"
+              formControlName="experiencia"
+              type="text"
+              placeholder="Ej. 3 años"
+            />
+          </div>
+          <div class="form-group">
+            <label for="habilidad">Habilidad</label>
+            <input
+              id="habilidad"
+              formControlName="habilidad"
+              type="text"
+              placeholder="Ej. Angular"
+            />
+          </div>
+          <div class="form-group">
+            <label for="estado">Estado</label>
+            <select id="estado" formControlName="estado">
+              <option value="">Todos</option>
+              <option value="Recibida">Recibida</option>
+              <option value="En Revisión">En Revisión</option>
+              <option value="Aceptada">Aceptada</option>
+              <option value="Rechazada">Rechazada</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn-primary">Aplicar Filtros</button>
+          <button type="button" class="btn-outline" (click)="exportarExcel()">
+            Exportar a Excel
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <div class="aspirantes-card">
+      <table class="aspirantes-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Vacante ID</th>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let a of aspirantesFiltrados">
+            <td>{{ a.id }}</td>
+            <td>{{ a.vacanteId }}</td>
+            <td>{{ a.nombre }}</td>
+            <td>{{ a.correo }}</td>
+            <td>
+              <span
+                [ngClass]="{
+                  'status-recibida': a.estadoPostulacion === 'Recibida',
+                  'status-revision': a.estadoPostulacion === 'En Revisión',
+                  'status-aceptada': a.estadoPostulacion === 'Aceptada',
+                  'status-rechazada': a.estadoPostulacion === 'Rechazada'
+                }"
+                >{{ a.estadoPostulacion }}</span
+              >
+            </td>
+            <td class="actions-cell">
+              <button
+                class="btn-small"
+                *ngIf="
+                  a.estadoPostulacion === 'Recibida' ||
+                  a.estadoPostulacion === 'En Revisión'
+                "
+                (click)="aceptarAspirante(a.id)"
+              >
+                Aceptar
+              </button>
+              <button
+                class="btn-small btn-reject"
+                *ngIf="
+                  a.estadoPostulacion === 'Recibida' ||
+                  a.estadoPostulacion === 'En Revisión'
+                "
+                (click)="rechazarAspirante(a.id)"
+              >
+                Rechazar
+              </button>
+            </td>
+          </tr>
+          <tr *ngIf="aspirantesFiltrados.length === 0">
+            <td colspan="6" class="no-records">
+              No hay aspirantes que coincidan
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+<div class="version-info">horizons 1.0.0</div>

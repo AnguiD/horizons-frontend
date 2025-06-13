@@ -1,0 +1,178 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    display: flex;
+    min-height: calc(100vh - 80px);
+}
+
+.main-content {
+    flex: 1;
+    padding: 2rem;
+    background: #f9fafb;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.page-title {
+    font-size: 2rem;
+    color: #ee7202;
+    font-weight: 700;
+}
+
+.header-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.btn-primary {
+    background: #ee7202;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-primary:hover {
+    background: #d46201;
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid #ee7202;
+    color: #ee7202;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-outline:hover {
+    background: #ee7202;
+    color: white;
+}
+
+.vacantes-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    overflow-x: auto;
+}
+
+.vacantes-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.vacantes-table thead {
+    background: #ee7202;
+}
+
+.vacantes-table th {
+    padding: 1rem;
+    color: white;
+    font-weight: 600;
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+.vacantes-table td {
+    padding: 1rem;
+    font-size: 0.9rem;
+    color: #374151;
+    border-top: 1px solid #e5e7eb;
+}
+
+.status-activa {
+    background: #d1fae5;
+    color: #059669;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.status-cerrada {
+    background: #fef3c7;
+    color: #d97706;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.actions-cell {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #6b7280;
+    transition: color 0.2s ease;
+}
+
+.btn-icon:hover {
+    color: #ee7202;
+}
+
+.btn-small {
+    background: #10b981;
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-small:hover {
+    background: #059669;
+}
+
+.no-records {
+    text-align: center;
+    padding: 1.5rem;
+    color: #6b7280;
+}
+
+.version-info {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    color: #6b7280;
+}
+
+@media (max-width: 768px) {
+    .main-content {
+        padding: 1rem;
+    }
+
+    .vacantes-table th,
+    .vacantes-table td {
+        padding: 0.75rem;
+        font-size: 0.85rem;
+    }
+}

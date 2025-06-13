@@ -11,9 +11,18 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./sidebar.component.css']
 })
 export class SidebarComponent {
+[x: string]: any;
   isEmpleadoOpen = false;
+  isEmpresasOpen = false;
 
   toggleEmpleado() {
     this.isEmpleadoOpen = !this.isEmpleadoOpen;
+  }
+  isReclutamientoOpen = false;
+  toggleReclutamiento() {
+    this.isReclutamientoOpen = !this.isReclutamientoOpen;
+  }
+  toggleEmpresas() {
+    this.isEmpresasOpen = !this.isEmpresasOpen;
   }
 }

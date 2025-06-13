@@ -1,1 +1,105 @@
-<p>solicitudes works!</p>
+<app-header></app-header>
+
+<div class="container">
+
+  <app-sidebar></app-sidebar>
+
+  <main class="main-content">
+    <div class="page-header">
+      <h1 class="page-title">Mis Solicitudes</h1>
+      <button class="new-request-btn" (click)="newRequest()">
+        Nueva Solicitud
+      </button>
+    </div>
+    <div class="filters">
+      <div class="filter-group">
+        <label for="tipoFiltro">Tipo</label>
+        <select id="tipoFiltro">
+          <option>Todas</option>
+          <option>Vacaciones</option>
+          <option>Permisos</option>
+          <option>Capacitación</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="estadoFiltro">Estado</label>
+        <select id="estadoFiltro">
+          <option>Todos</option>
+          <option>Pendiente</option>
+          <option>Aprobado</option>
+          <option>Rechazado</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="fechaFiltro">Fecha</label>
+        <select id="fechaFiltro">
+          <option>Último mes</option>
+          <option>Últimos 3 meses</option>
+          <option>Último año</option>
+        </select>
+      </div>
+    </div>
+    <div class="requests-table">
+      <div class="table-header">Solicitudes Recientes</div>
+      <div class="request-item">
+        <div class="request-info">
+          <h3>Solicitud de Vacaciones</h3>
+          <p>Del 15 al 25 de Febrero, 2024</p>
+        </div>
+        <div class="request-date">10 Ene 2024</div>
+        <div class="request-status status-pending">Pendiente</div>
+        <div class="request-actions">
+          <button class="action-btn view-btn" (click)="viewRequest(1)">
+            Ver
+          </button>
+          <button class="action-btn edit-btn" (click)="editRequest(1)">
+            Editar
+          </button>
+          <button class="action-btn delete-btn" (click)="deleteRequest(1)">
+            Eliminar
+          </button>
+        </div>
+      </div>
+      <div class="request-item">
+        <div class="request-info">
+          <h3>Permiso Personal</h3>
+          <p>Cita médica - 5 de Enero, 2024</p>
+        </div>
+        <div class="request-date">3 Ene 2024</div>
+        <div class="request-status status-approved">Aprobado</div>
+        <div class="request-actions">
+          <button class="action-btn view-btn" (click)="viewRequest(2)">
+            Ver
+          </button>
+        </div>
+      </div>
+      <div class="request-item">
+        <div class="request-info">
+          <h3>Capacitación Externa</h3>
+          <p>Curso de Liderazgo - 20 horas</p>
+        </div>
+        <div class="request-date">28 Dic 2023</div>
+        <div class="request-status status-approved">Aprobado</div>
+        <div class="request-actions">
+          <button class="action-btn view-btn" (click)="viewRequest(3)">
+            Ver
+          </button>
+        </div>
+      </div>
+      <div class="request-item">
+        <div class="request-info">
+          <h3>Día de Descanso</h3>
+          <p>Compensación por trabajo extra</p>
+        </div>
+        <div class="request-date">20 Dic 2023</div>
+        <div class="request-status status-rejected">Rechazado</div>
+        <div class="request-actions">
+          <button class="action-btn view-btn" (click)="viewRequest(4)">
+            Ver
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<div class="version-info">horizons 1.0.0</div>

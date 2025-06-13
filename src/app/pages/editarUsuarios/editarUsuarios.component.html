@@ -1,0 +1,80 @@
+<app-header></app-header>
+<div class="container">
+  <app-sidebar></app-sidebar>
+  <main class="main-content">
+    <h1 class="page-title">Editar Usuario</h1>
+    <form (ngSubmit)="onSave()" #editForm="ngForm" class="edit-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input
+            id="nombre"
+            name="nombre"
+            type="text"
+            [(ngModel)]="user.nombre"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="telefono">Teléfono</label>
+          <input
+            id="telefono"
+            name="telefono"
+            type="text"
+            [(ngModel)]="user.telefono"
+          />
+        </div>
+        <div class="form-group">
+          <label for="correo">Correo</label>
+          <input
+            id="correo"
+            name="correo"
+            type="email"
+            [(ngModel)]="user.correo"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="puestoActual">Puesto Actual</label>
+          <input
+            id="puestoActual"
+            name="puestoActual"
+            type="text"
+            [(ngModel)]="user.puestoActual"
+          />
+        </div>
+        <div class="form-group">
+          <label for="salario">Salario</label>
+          <input
+            id="salario"
+            name="salario"
+            type="text"
+            [(ngModel)]="user.salario"
+          />
+        </div>
+        <div class="form-group">
+          <label for="equipo">Equipo (Núm. Serie)</label>
+          <input
+            id="equipo"
+            name="equipo"
+            type="text"
+            [(ngModel)]="user.equipo"
+          />
+        </div>
+      </div>
+      <div class="form-actions">
+        <button
+          type="submit"
+          class="save-btn"
+          [disabled]="!editForm.form.valid"
+        >
+          Guardar
+        </button>
+        <button type="button" class="cancel-btn" (click)="onCancel()">
+          Cancelar
+        </button>
+      </div>
+    </form>
+  </main>
+</div>
+<div class="version-info">horizons 1.0.0</div>

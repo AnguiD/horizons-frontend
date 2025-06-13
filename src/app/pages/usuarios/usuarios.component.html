@@ -1,0 +1,42 @@
+<app-header></app-header>
+<div class="container">
+  <app-sidebar></app-sidebar>
+  <main class="main-content">
+    <div class="page-header">
+      <h1 class="page-title">Mis Usuarios</h1>
+      <button class="invite-btn" (click)="inviteUser()">Invitar usuario</button>
+    </div>
+
+    <div class="users-card">
+      <table class="users-table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Teléfono</th>
+            <th>Correo</th>
+            <th>Puesto Actual</th>
+            <th>Salario</th>
+            <th>Equipo (Núm. Serie)</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of usuarios">
+            <td>{{ user.nombre }}</td>
+            <td>{{ user.telefono }}</td>
+            <td>{{ user.correo }}</td>
+            <td>{{ user.puestoActual }}</td>
+            <td>{{ user.salario }}</td>
+            <td>{{ user.equipo }}</td>
+            <td class="actions-cell">
+              <button class="btn-icon" (click)="editUser(user.id)">
+                ✎
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+<div class="version-info">horizons 1.0.0</div>

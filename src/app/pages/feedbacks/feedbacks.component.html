@@ -1,0 +1,238 @@
+<app-header></app-header>
+<div class="container">
+  <app-sidebar></app-sidebar>
+  <main class="main-content">
+    <div class="page-header">
+      <h1 class="page-title">Mis Feedbacks</h1>
+      <button class="new-feedback-btn" (click)="newFeedback()">
+        Dar Feedback
+      </button>
+    </div>
+
+    <div class="feedback-stats">
+      <div class="stat-card">
+        <div class="stat-number">{{ stats.promedio }}</div>
+        <div class="stat-label">Promedio de Calificación</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">{{ stats.recibidos }}</div>
+        <div class="stat-label">Feedbacks Recibidos</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">{{ stats.dados }}</div>
+        <div class="stat-label">Feedbacks Dados</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">{{ stats.esteMes }}</div>
+        <div class="stat-label">Este Mes</div>
+      </div>
+    </div>
+
+    <div class="feedback-tabs">
+      <button
+        class="tab"
+        [ngClass]="{ active: currentTab === 'recibidos' }"
+        (click)="switchTab('recibidos')"
+      >
+        Recibidos
+      </button>
+      <button
+        class="tab"
+        [ngClass]="{ active: currentTab === 'dados' }"
+        (click)="switchTab('dados')"
+      >
+        Dados
+      </button>
+      <button
+        class="tab"
+        [ngClass]="{ active: currentTab === 'pendientes' }"
+        (click)="switchTab('pendientes')"
+      >
+        Pendientes
+      </button>
+    </div>
+
+    <div class="feedback-grid">
+      <ng-container *ngIf="currentTab === 'recibidos'">
+        <div class="feedback-card" *ngFor="let fb of recibidos">
+          <div class="feedback-header">
+            <div class="feedback-from">
+              <div
+                class="from-avatar"
+                [ngStyle]="{ 'background-color': fb.avatarColor }"
+              >
+                {{ fb.iniciales }}
+              </div>
+              <div class="from-info">
+                <h3>{{ fb.nombre }}</h3>
+                <p>{{ fb.puesto }}</p>
+              </div>
+            </div>
+            <div class="header-right">
+              <div class="feedback-date">
+                {{ fb.fecha | date : "dd MMM yyyy" }}
+              </div>
+              <div
+                class="feedback-type"
+                [ngClass]="{
+                  'type-positive': fb.tipo === 'Reconocimiento',
+                  'type-constructive': fb.tipo === 'Constructivo',
+                  'type-recognition': fb.tipo === 'Reconocimiento'
+                }"
+              >
+                {{ fb.tipo }}
+              </div>
+            </div>
+          </div>
+          <div class="feedback-content">
+            <div class="feedback-title">{{ fb.titulo }}</div>
+            <div class="feedback-text">{{ fb.texto }}</div>
+          </div>
+          <div class="feedback-rating">
+            <span>Calificación:</span>
+            <div class="stars">
+              <ng-container *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
+                <span
+                  class="star"
+                  [ngClass]="{ empty: i + 1 > fb.calificacion }"
+                >
+                  ★
+                </span>
+              </ng-container>
+            </div>
+            <span>({{ fb.calificacion }}.0)</span>
+          </div>
+          <div class="feedback-actions">
+            <button class="btn btn-primary" (click)="respondFeedback(fb.id)">
+              Responder
+            </button>
+            <button class="btn btn-secondary" (click)="saveFeedback(fb.id)">
+              Guardar
+            </button>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="currentTab === 'dados'">
+        <div class="feedback-card" *ngFor="let fb of dados">
+          <div class="feedback-header">
+            <div class="feedback-from">
+              <div
+                class="from-avatar"
+                [ngStyle]="{ 'background-color': fb.avatarColor }"
+              >
+                {{ fb.iniciales }}
+              </div>
+              <div class="from-info">
+                <h3>{{ fb.nombre }}</h3>
+                <p>{{ fb.puesto }}</p>
+              </div>
+            </div>
+            <div class="header-right">
+              <div class="feedback-date">
+                {{ fb.fecha | date : "dd MMM yyyy" }}
+              </div>
+              <div
+                class="feedback-type"
+                [ngClass]="{
+                  'type-positive': fb.tipo === 'Reconocimiento',
+                  'type-constructive': fb.tipo === 'Constructivo',
+                  'type-recognition': fb.tipo === 'Reconocimiento'
+                }"
+              >
+                {{ fb.tipo }}
+              </div>
+            </div>
+          </div>
+          <div class="feedback-content">
+            <div class="feedback-title">{{ fb.titulo }}</div>
+            <div class="feedback-text">{{ fb.texto }}</div>
+          </div>
+          <div class="feedback-rating">
+            <span>Calificación:</span>
+            <div class="stars">
+              <ng-container *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
+                <span
+                  class="star"
+                  [ngClass]="{ empty: i + 1 > fb.calificacion }"
+                >
+                  ★
+                </span>
+              </ng-container>
+            </div>
+            <span>({{ fb.calificacion }}.0)</span>
+          </div>
+          <div class="feedback-actions">
+            <button class="btn btn-primary" (click)="createActionPlan(fb.id)">
+              Plan de Acción
+            </button>
+            <button class="btn btn-secondary" (click)="saveFeedback(fb.id)">
+              Guardar
+            </button>
+          </div>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="currentTab === 'pendientes'">
+        <div class="feedback-card" *ngFor="let fb of pendientes">
+          <div class="feedback-header">
+            <div class="feedback-from">
+              <div
+                class="from-avatar"
+                [ngStyle]="{ 'background-color': fb.avatarColor }"
+              >
+                {{ fb.iniciales }}
+              </div>
+              <div class="from-info">
+                <h3>{{ fb.nombre }}</h3>
+                <p>{{ fb.puesto }}</p>
+              </div>
+            </div>
+            <div class="header-right">
+              <div class="feedback-date">
+                {{ fb.fecha | date : "dd MMM yyyy" }}
+              </div>
+              <div
+                class="feedback-type"
+                [ngClass]="{
+                  'type-positive': fb.tipo === 'Reconocimiento',
+                  'type-constructive': fb.tipo === 'Constructivo',
+                  'type-recognition': fb.tipo === 'Reconocimiento'
+                }"
+              >
+                {{ fb.tipo }}
+              </div>
+            </div>
+          </div>
+          <div class="feedback-content">
+            <div class="feedback-title">{{ fb.titulo }}</div>
+            <div class="feedback-text">{{ fb.texto }}</div>
+          </div>
+          <div class="feedback-rating">
+            <span>Calificación:</span>
+            <div class="stars">
+              <ng-container *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
+                <span
+                  class="star"
+                  [ngClass]="{ empty: i + 1 > fb.calificacion }"
+                >
+                  ★
+                </span>
+              </ng-container>
+            </div>
+            <span>({{ fb.calificacion }}.0)</span>
+          </div>
+          <div class="feedback-actions">
+            <button class="btn btn-primary" (click)="thankFeedback(fb.id)">
+              Agradecer
+            </button>
+            <button class="btn btn-secondary" (click)="shareFeedback(fb.id)">
+              Compartir
+            </button>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </main>
+</div>
+<div class="version-info">horizons 1.0.0</div>

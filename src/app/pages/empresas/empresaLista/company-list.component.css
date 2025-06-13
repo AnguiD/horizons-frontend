@@ -1,0 +1,54 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+.list-container {
+  padding: 2rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.list-box {
+  flex: 1;
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 1.5rem;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.list-box h2 {
+  margin-bottom: 1rem;
+  color: #333;
+  text-align: center;
+}
+
+.company-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.company-table th,
+.company-table td {
+  border: 1px solid #ddd;
+  padding: 0.75rem;
+  text-align: left;
+}
+
+.company-table th {
+  background: #f5f5f5;
+}
+
+.action-btn {
+  margin-right: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.view-btn { background-color: #6c757d; color: white; }
+.edit-btn { background-color: #007bff; color: white; }
+.delete-btn { background-color: #dc3545; color: white; }

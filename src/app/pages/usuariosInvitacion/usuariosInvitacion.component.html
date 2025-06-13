@@ -1,0 +1,170 @@
+<app-header></app-header>
+<div class="container">
+  <app-sidebar></app-sidebar>
+  <main class="main-content">
+    <h1 class="page-title">Registro de usuario</h1>
+    <p class="form-instruction">
+      Ingrese la información para completar su cuenta
+    </p>
+    <form (ngSubmit)="onSubmit()" #userForm="ngForm" class="user-form">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="rfc">RFC</label>
+          <input
+            id="rfc"
+            name="rfc"
+            type="text"
+            [(ngModel)]="user.rfc"
+            placeholder="Ingrese su RFC"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="curp">CURP</label>
+          <input
+            id="curp"
+            name="curp"
+            type="text"
+            [(ngModel)]="user.curp"
+            placeholder="Ingrese su CURP"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="fechaNacimiento">Fecha de Nacimiento</label>
+          <input
+            id="fechaNacimiento"
+            name="fechaNacimiento"
+            type="date"
+            [(ngModel)]="user.fechaNacimiento"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="gradoEstudios">Grado de Estudios</label>
+          <select
+            id="gradoEstudios"
+            name="gradoEstudios"
+            [(ngModel)]="user.gradoEstudios"
+            required
+          >
+            <option value="" disabled selected>Seleccione...</option>
+            <option>Secundaria</option>
+            <option>Preparatoria</option>
+            <option>Licenciatura</option>
+            <option>Maestría</option>
+            <option>Doctorado</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="ultimoTrabajo">Último Trabajo</label>
+          <input
+            id="ultimoTrabajo"
+            name="ultimoTrabajo"
+            type="text"
+            [(ngModel)]="user.ultimoTrabajo"
+            placeholder="Último trabajo"
+          />
+        </div>
+        <div class="form-group">
+          <label for="telefono">Teléfono</label>
+          <input
+            id="telefono"
+            name="telefono"
+            type="text"
+            [(ngModel)]="user.telefono"
+            placeholder="Ingrese su número de tel"
+          />
+        </div>
+        <div class="form-group">
+          <label for="direccion">Dirección</label>
+          <input
+            id="direccion"
+            name="direccion"
+            type="text"
+            [(ngModel)]="user.direccion"
+            placeholder="Enrique Segoviano No. 1"
+          />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="puestoActual">Puesto Actual</label>
+          <input
+            id="puestoActual"
+            name="puestoActual"
+            type="text"
+            [(ngModel)]="user.puestoActual"
+            placeholder="Ingrese su puesto actual"
+          />
+        </div>
+        <div class="form-group">
+          <label for="fechaActualizacion"
+            >Fecha de Actualización de Salario</label
+          >
+          <input
+            id="fechaActualizacion"
+            name="fechaActualizacion"
+            type="date"
+            [(ngModel)]="user.fechaActualizacionSalario"
+          />
+        </div>
+        <div class="form-group status-group">
+          <label>Estatus</label>
+          <div class="status-options">
+            <label>
+              <input
+                type="radio"
+                name="estatus"
+                value="Activo"
+                [(ngModel)]="user.estatus"
+                required
+              />
+              Activo
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="estatus"
+                value="Inactivo"
+                [(ngModel)]="user.estatus"
+              />
+              Inactivo
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="estatus"
+                value="Pendiente"
+                [(ngModel)]="user.estatus"
+              />
+              Pendiente
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="recursos">Recursos</label>
+          <input
+            id="recursos"
+            name="recursos"
+            type="text"
+            [(ngModel)]="user.recursos"
+            placeholder="8Gb, 511gn 1tb"
+          />
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button
+          type="submit"
+          class="submit-btn"
+          [disabled]="!userForm.form.valid"
+        >
+          Enviar
+        </button>
+      </div>
+    </form>
+  </main>
+</div>
+<div class="version-info">horizons 1.0.0</div>
