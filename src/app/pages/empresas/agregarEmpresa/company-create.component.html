@@ -1,16 +1,25 @@
-<app-header></app-header>
+<div class="modal-backdrop">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>Nueva Solicitud</h2>
+      <button class="cerrar-btn" (click)="cerrar.emit()">✕</button>
+    </div>
+    <div class="modal-body">
+      <label>Nombre de la Empresa</label>
+      <input name="nombre" [(ngModel)]="newEmpresa.nombre" placeholder="Nombre" required />
 
-<div class="create-container">
-  <div class="create-box">
-    <h2>Crear Nueva Empresa</h2>
-    <form #f="ngForm">
-      <input name="nombre"    [(ngModel)]="empresa.nombre"    placeholder="Nombre"   required />
-      <input name="direccion" [(ngModel)]="empresa.direccion" placeholder="Dirección"required />
-      <input name="telefono"  [(ngModel)]="empresa.telefono"  placeholder="Teléfono" required />
-      <input name="email"     [(ngModel)]="empresa.email"     type="email"  placeholder="Email"    required />
-      <button class="save-btn" type="button" (click)="save()">Guardar</button>
-      <button class="cancel-link" type="button" (click)="cancel()">Cancelar</button>
-    </form>
+      <label>Información de Contacto</label>
+      <input name="direccion" [(ngModel)]="newEmpresa.direccion" placeholder="Dirección" required />
+
+      <label>Teléfono</label>
+      <input name="telefono" [(ngModel)]="newEmpresa.telefono" placeholder="Teléfono" required />
+
+      <label>Email</label>
+      <input name="email" [(ngModel)]="newEmpresa.email" type="email" placeholder="Email" required />
+    </div>
+    <div class="modal-footer">
+      <button class="cancelar" (click)="cerrar.emit()">Cancelar</button>
+      <button class="guardar" (click)="guardar()">Guardar</button>
+    </div>
   </div>
 </div>
-
