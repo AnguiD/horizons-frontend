@@ -1,7 +1,6 @@
 <app-header></app-header>
 
 <div class="container">
-
   <app-sidebar></app-sidebar>
 
   <main class="main-content">
@@ -102,4 +101,6 @@
     </div>
   </main>
 </div>
+<app-modal-soliciud *ngIf="modalAbierto" (cerrar)="cerrarModal()"></app-modal-soliciud>
 <div class="version-info">horizons 1.0.0</div>
+

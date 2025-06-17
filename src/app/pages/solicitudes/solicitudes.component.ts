@@ -1,24 +1,31 @@
-import { Component, OnInit } from '@angular/core';
-import { HeaderComponent } from "../header/header.component";
-import { SidebarComponent } from "../sidebar/sidebar.component";
+import { Component } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { HeaderComponent } from '../header/header.component';
+import { SidebarComponent } from '../sidebar/sidebar.component';
+import { ModalSoliciudComponent } from '../modal-soliciud/modal-soliciud.component';
 
 @Component({
   selector: 'app-solicitudes',
-  imports: [HeaderComponent, SidebarComponent],
+  standalone: true,
+  imports: [
+    CommonModule,
+    HeaderComponent,
+    SidebarComponent,
+    ModalSoliciudComponent
+  ],
   templateUrl: './solicitudes.component.html',
-  styleUrl: './solicitudes.component.css'
+  styleUrls: ['./solicitudes.component.css']
 })
-export class SolicitudesComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+export class SolicitudesComponent {
+  modalAbierto = false;
 
   newRequest(): void {
-    alert('Crear nueva solicitud - Funcionalidad en desarrollo');
+    this.modalAbierto = true;
   }
 
+  cerrarModal(): void {
+    this.modalAbierto = false;
+  }
 
   viewRequest(id: number): void {
     alert(`Ver detalles de la solicitud ${id}`);
@@ -26,9 +33,7 @@ export class SolicitudesComponent implements OnInit {
 
   editRequest(id: number): void {
     alert(`Editar solicitud ${id}`);
-
   }
-
 
   deleteRequest(id: number): void {
     const confirmed = window.confirm(`¿Estás seguro de que quieres eliminar la solicitud ${id}?`);

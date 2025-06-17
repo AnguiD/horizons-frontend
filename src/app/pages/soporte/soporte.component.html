@@ -4,13 +4,9 @@
     <app-sidebar></app-sidebar>
 
     <main class="main-content">
-        <h1 class="page-title">Soporte Técnico</h1>
-
-        <div class="formulario">
-            <h2 class="section-title">Crear Nuevo Ticket</h2>
-            <input type="text" placeholder="Asunto" [(ngModel)]="nuevoTicket.asunto" />
-            <textarea rows="3" placeholder="Descripción del problema" [(ngModel)]="nuevoTicket.descripcion"></textarea>
-            <button class="btn-primary" (click)="enviarTicket()">Enviar Ticket</button>
+        <div class="page-header">
+            <h1 class="page-title">Soporte Técnico</h1>
+            <button class="new-ticket-btn" (click)="abrirModal()">+ Nuevo Ticket</button>
         </div>
 
         <div class="listado">
@@ -47,3 +43,6 @@
         </div>
     </main>
 </div>
+
+<app-modal-ticket *ngIf="modalAbierto" (cerrar)="cerrarModal()" (guardar)="agregarTicket($event)">
+</app-modal-ticket>

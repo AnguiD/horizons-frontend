@@ -1,0 +1,26 @@
+<div class="modal-backdrop">
+    <div class="modal">
+        <div class="modal-header">
+            <h2>Nuevo Ticket de Soporte</h2>
+            <button class="cerrar-btn" (click)="cerrar.emit()">✕</button>
+        </div>
+        <div class="modal-body">
+            <label>Asunto</label>
+            <input type="text" [(ngModel)]="ticket.asunto" placeholder="Asunto" />
+
+            <label>Descripción del problema</label>
+            <textarea rows="3" [(ngModel)]="ticket.descripcion" placeholder="Describa el problema"></textarea>
+
+            <label>Prioridad</label>
+            <select [(ngModel)]="ticket.prioridad">
+                <option>Baja</option>
+                <option>Media</option>
+                <option>Alta</option>
+            </select>
+        </div>
+        <div class="modal-footer">
+            <button class="cancelar" (click)="cerrar.emit()">Cancelar</button>
+            <button class="guardar" (click)="saveTicket()">Guardar</button>
+        </div>
+    </div>
+</div>

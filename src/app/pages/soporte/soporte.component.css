@@ -11,11 +11,16 @@
 }
 
 .main-content {
+    flex: 1;
     padding: 2rem;
-    width: 100%;
+    background: #f9fafb;
+}
+
+.page-header {
     display: flex;
-    flex-direction: column;
-    gap: 2rem;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
 }
 
 .page-title {
@@ -30,29 +35,22 @@
     color: #ee7202;
 }
 
-.formulario input,
-.formulario textarea {
-    width: 100%;
-    padding: 0.75rem;
-    margin-bottom: 1rem;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    font-size: 1rem;
-}
-
-.btn-primary {
+.new-ticket-btn {
     background: #ee7202;
     color: white;
+    padding: 0.6rem 1.2rem;
     border: none;
-    padding: 0.75rem 1.5rem;
     border-radius: 8px;
-    font-weight: bold;
+    font-size: 1rem;
+    font-weight: 600;
     cursor: pointer;
+    transition: background-color 0.2s ease;
 }
 
-.btn-primary:hover {
+.new-ticket-btn:hover {
     background: #d46201;
 }
+
 
 .search {
     width: 100%;

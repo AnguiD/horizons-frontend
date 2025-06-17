@@ -32,12 +32,11 @@ export const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'profile', component: ProfileComponent },
-  { path: 'solicitudes', component: SolicitudesComponent },
   { path: 'desarrollo', component: DesarrolloComponent },
   { path: 'evaluaciones', component: EvaluacionesComponent },
   { path: 'feedbacks', component: FeedbacksComponent },
   { path: 'seguros', component: SegurosComponent },
-  { path: 'empleado/solicitudes', component: SolicitudesRecibidasComponent},
+  { path: 'empleado/solicitudes', component: SolicitudesComponent},
   { path: 'empleado/nominas', component: NominasComponent },
   { path: 'empleado/soporte', component: SoporteComponent },
   { path: 'usuarios', component: UsuariosComponent },
@@ -53,6 +52,7 @@ export const routes: Routes = [
   { path: 'empresas/crear', component: CompanyCreateComponent },
   { path: 'empresas/editar/:id', component: CompanyEditComponent },
   { path: 'empresas/:id', component: CompanyDetailComponent },
+  { path: 'administrador/solicitudes', component: SolicitudesRecibidasComponent },
 
 ];
 
