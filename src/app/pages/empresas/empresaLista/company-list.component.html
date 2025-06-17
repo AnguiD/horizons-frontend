@@ -1,31 +1,40 @@
 <app-header></app-header>
 
-<div class="list-container">
+<div class="container">
   <app-sidebar></app-sidebar>
-  <div class="list-box">
-    <h2>Gestión de Empresas</h2>
-    <button class="action-btn edit-btn" (click)="goToCreate()">+ Nueva Empresa</button>
-    <table class="company-table">
-      <thead>
-        <tr>
-          <th>ID</th><th>Nombre</th><th>Dirección</th><th>Teléfono</th><th>Email</th><th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let emp of companies">
-          <td>{{ emp.id }}</td>
-          <td>{{ emp.nombre }}</td>
-          <td>{{ emp.direccion }}</td>
-          <td>{{ emp.telefono }}</td>
-          <td>{{ emp.email }}</td>
-          <td>
-            <button class="action-btn view-btn" (click)="viewCompany(emp.id)">Ver</button>
-            <button class="action-btn edit-btn" (click)="editCompany(emp.id)">Editar</button>
-            <button class="action-btn delete-btn" (click)="deleteCompany(emp.id)">Eliminar</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+
+  <main class="main-content">
+    <div class="list-box">
+      <h2>Gestión de Empresas</h2>
+      <button class="action-btn edit-btn" (click)="abrirModal()">+ Nueva Empresa</button>
+      <table class="company-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Dirección</th>
+            <th>Teléfono</th>
+            <th>Email</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let emp of companies">
+            <td>{{ emp.id }}</td>
+            <td>{{ emp.nombre }}</td>
+            <td>{{ emp.direccion }}</td>
+            <td>{{ emp.telefono }}</td>
+            <td>{{ emp.email }}</td>
+            <td class="buttons">
+              <button class="action-btn view-btn" (click)="viewCompany(emp.id)">Ver</button>
+              <button class="action-btn edit-btn" (click)="editCompany(emp.id)">Editar</button>
+              <button class="action-btn delete-btn" (click)="deleteCompany(emp.id)">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
 </div>
 
+<company-create *ngIf="modalAbierto" (cerrar)="cerrarModal()"></company-create>
