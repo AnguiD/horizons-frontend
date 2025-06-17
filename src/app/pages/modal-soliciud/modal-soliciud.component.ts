@@ -3,24 +3,24 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'company-create',
+  selector: 'app-modal-soliciud',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './company-create.component.html',
-  styleUrls: ['./company-create.component.css']
+  templateUrl: './modal-soliciud.component.html',
+  styleUrls: ['./modal-soliciud.component.css']
 })
-export class CompanyCreateComponent {
+export class ModalSoliciudComponent {
   @Output() cerrar = new EventEmitter<void>();
 
-  newEmpresa = {
-    nombre: '',
-    direccion: '',
-    telefono: '',
-    email: ''
+  solicitud = {
+    tipo: '',
+    fechaInicio: '',
+    fechaFin: '',
+    motivo: ''
   };
 
   guardar() {
-    console.log('Nueva Empresa Registrada:', this.newEmpresa);
+    console.log('Solicitud enviada:', this.solicitud);
     this.cerrar.emit();
   }
 }

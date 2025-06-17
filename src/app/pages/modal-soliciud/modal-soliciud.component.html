@@ -1,0 +1,36 @@
+<div class="modal-backdrop">
+    <div class="modal">
+        <div class="modal-header">
+            <h2>Nueva Solicitud</h2>
+            <button class="cerrar-btn" (click)="cerrar.emit()">✕</button>
+        </div>
+
+        <div class="modal-body">
+            <label>Tipo de Solicitud</label>
+            <select [(ngModel)]="solicitud.tipo">
+                <option value="">Seleccione una opción</option>
+                <option>Vacaciones</option>
+                <option>Permiso Personal</option>
+                <option>Capacitación</option>
+                <option>Día de Descanso</option>
+            </select>
+
+            <label>Fecha Inicio</label>
+            <input type="date" [(ngModel)]="solicitud.fechaInicio" />
+
+            <label>Fecha Fin</label>
+            <input type="date" [(ngModel)]="solicitud.fechaFin" />
+
+            <label>Motivo (opcional)</label>
+            <textarea rows="3" [(ngModel)]="solicitud.motivo"
+                placeholder="Ej. Cita médica, compensación, etc."></textarea>
+        </div>
+
+        <div class="modal-footer">
+            <button class="cancelar" (click)="cerrar.emit()">Cancelar</button>
+            <button class="guardar" (click)="guardar()">Guardar</button>
+        </div>
+    </div>
+</div>
+
+
