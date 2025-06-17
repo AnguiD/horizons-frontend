@@ -20,16 +20,6 @@
       </a>
     </li>
     <li>
-      <a routerLink="/solicitudes" routerLinkActive="active">
-        <svg class="sidebar-icon" viewBox="0 0 24 24">
-          <path
-            d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z"
-          />
-        </svg>
-        Mis Solicitudes
-      </a>
-    </li>
-    <li>
       <a routerLink="/desarrollo" routerLinkActive="active">
         <svg class="sidebar-icon" viewBox="0 0 24 24">
           <path
@@ -88,11 +78,6 @@
             Listado de Empresas
           </a>
         </li>
-        <li>
-          <a routerLink="/empresas/crear" routerLinkActive="active">
-            Nueva Empresa
-          </a>
-        </li>
       </ul>
     </li>
 
@@ -127,16 +112,6 @@
       </ul>
     </li>
 
-    <li>
-      <a routerLink="/usuarios" routerLinkActive="active">
-        <svg class="sidebar-icon" viewBox="0 0 24 24">
-          <path
-            d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm-1 16H9V7h9v14z"
-          />
-        </svg>
-        Mis Usuarios
-      </a>
-    </li>
     <li class="dropdown">
       <a
         (click)="toggleReclutamiento()"
@@ -173,6 +148,49 @@
         </li>
       </ul>
     </li>
+
+        <li>
+      <a routerLink="/usuarios" routerLinkActive="active">
+        <svg class="sidebar-icon" viewBox="0 0 24 24">
+          <path
+            d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm-1 16H9V7h9v14z"
+          />
+        </svg>
+        Mis Usuarios
+      </a>
+    </li>
+
+    <li class="dropdown">
+      <a
+        (click)="toggleAdministrador()"
+        class="dropdown-toggle"
+        [class.active]="isAdministradorOpen"
+      >
+        <svg class="sidebar-icon" viewBox="0 0 24 24">
+          <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+        </svg>
+        Gestión Administrador
+        <span class="arrow" [class.rotate]="isAdministradorOpen">›</span>
+      </a>
+      <ul class="submenu" *ngIf="isAdministradorOpen">
+        <li>
+          <a routerLink="/administrador/solicitudes" routerLinkActive="active"
+            >Solicitudes</a
+          >
+        </li>
+        <li>
+          <a routerLink="/empleado/nominas" routerLinkActive="active"
+            >Recibos de Nómina</a
+          >
+        </li>
+        <li>
+          <a routerLink="/empleado/soporte" routerLinkActive="active"
+            >Soporte Técnico</a
+          >
+        </li>
+      </ul>
+    </li>
+
     <li>
       <a href="#">
         <svg class="sidebar-icon" viewBox="0 0 24 24">

@@ -14,15 +14,20 @@ export class SidebarComponent {
 [x: string]: any;
   isEmpleadoOpen = false;
   isEmpresasOpen = false;
+  isReclutamientoOpen = false;
+  isAdministradorOpen = false;
 
   toggleEmpleado() {
     this.isEmpleadoOpen = !this.isEmpleadoOpen;
   }
-  isReclutamientoOpen = false;
+
   toggleReclutamiento() {
     this.isReclutamientoOpen = !this.isReclutamientoOpen;
   }
   toggleEmpresas() {
     this.isEmpresasOpen = !this.isEmpresasOpen;
+  }
+  toggleAdministrador() {
+    this.isAdministradorOpen = !this.isAdministradorOpen;
   }
 }
