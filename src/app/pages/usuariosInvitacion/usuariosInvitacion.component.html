@@ -9,161 +9,77 @@
     <form (ngSubmit)="onSubmit()" #userForm="ngForm" class="user-form">
       <div class="form-row">
         <div class="form-group">
-          <label for="rfc">RFC</label>
-          <input
-            id="rfc"
-            name="rfc"
-            type="text"
-            [(ngModel)]="user.rfc"
-            placeholder="Ingrese su RFC"
-            required
-          />
+          <label for="correo">Correo</label>
+          <input id="correo" name="correo" type="email" [(ngModel)]="user.correo" placeholder="usuario@empresa.com"
+            required />
         </div>
+
         <div class="form-group">
-          <label for="curp">CURP</label>
-          <input
-            id="curp"
-            name="curp"
-            type="text"
-            [(ngModel)]="user.curp"
-            placeholder="Ingrese su CURP"
-            required
-          />
+          <label for="nombre">Nombre</label>
+          <input id="nombre" name="nombre" type="text" [(ngModel)]="user.nombre" placeholder="Nombre(s)" required />
         </div>
+
         <div class="form-group">
-          <label for="fechaNacimiento">Fecha de Nacimiento</label>
-          <input
-            id="fechaNacimiento"
-            name="fechaNacimiento"
-            type="date"
-            [(ngModel)]="user.fechaNacimiento"
-            required
-          />
+          <label for="apPaterno">Apellido Paterno</label>
+          <input id="apPaterno" name="apPaterno" type="text" [(ngModel)]="user.apPaterno" placeholder="Apellido Paterno"
+            required />
         </div>
+
         <div class="form-group">
-          <label for="gradoEstudios">Grado de Estudios</label>
-          <select
-            id="gradoEstudios"
-            name="gradoEstudios"
-            [(ngModel)]="user.gradoEstudios"
-            required
-          >
-            <option value="" disabled selected>Seleccione...</option>
-            <option>Secundaria</option>
-            <option>Preparatoria</option>
-            <option>Licenciatura</option>
-            <option>Maestría</option>
-            <option>Doctorado</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="ultimoTrabajo">Último Trabajo</label>
-          <input
-            id="ultimoTrabajo"
-            name="ultimoTrabajo"
-            type="text"
-            [(ngModel)]="user.ultimoTrabajo"
-            placeholder="Último trabajo"
-          />
-        </div>
-        <div class="form-group">
-          <label for="telefono">Teléfono</label>
-          <input
-            id="telefono"
-            name="telefono"
-            type="text"
-            [(ngModel)]="user.telefono"
-            placeholder="Ingrese su número de tel"
-          />
-        </div>
-        <div class="form-group">
-          <label for="direccion">Dirección</label>
-          <input
-            id="direccion"
-            name="direccion"
-            type="text"
-            [(ngModel)]="user.direccion"
-            placeholder="Enrique Segoviano No. 1"
-          />
+          <label for="apMaterno">Apellido Materno</label>
+          <input id="apMaterno" name="apMaterno" type="text" [(ngModel)]="user.apMaterno"
+            placeholder="Apellido Materno" />
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group">
-          <label for="puestoActual">Puesto Actual</label>
-          <input
-            id="puestoActual"
-            name="puestoActual"
-            type="text"
-            [(ngModel)]="user.puestoActual"
-            placeholder="Ingrese su puesto actual"
-          />
+          <label for="rol">Rol</label>
+          <select id="rol" name="rol" [(ngModel)]="user.id_rol" required>
+            <option value="" disabled selected>Seleccione un rol</option>
+            <option *ngFor="let rol of roles" [value]="rol.id">{{ rol.nombre }}</option>
+          </select>
         </div>
+
+
         <div class="form-group">
-          <label for="fechaActualizacion"
-            >Fecha de Actualización de Salario</label
-          >
-          <input
-            id="fechaActualizacion"
-            name="fechaActualizacion"
-            type="date"
-            [(ngModel)]="user.fechaActualizacionSalario"
-          />
+          <label for="salarioBase">Salario Base</label>
+          <input id="salarioBase" name="salarioBase" type="number" step="0.01" [(ngModel)]="user.salarioBase"
+            placeholder="15000.50" required />
         </div>
-        <div class="form-group status-group">
-          <label>Estatus</label>
-          <div class="status-options">
-            <label>
-              <input
-                type="radio"
-                name="estatus"
-                value="Activo"
-                [(ngModel)]="user.estatus"
-                required
-              />
-              Activo
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="estatus"
-                value="Inactivo"
-                [(ngModel)]="user.estatus"
-              />
-              Inactivo
-            </label>
-            <label>
-              <input
-                type="radio"
-                name="estatus"
-                value="Pendiente"
-                [(ngModel)]="user.estatus"
-              />
-              Pendiente
-            </label>
-          </div>
-        </div>
+
         <div class="form-group">
-          <label for="recursos">Recursos</label>
-          <input
-            id="recursos"
-            name="recursos"
-            type="text"
-            [(ngModel)]="user.recursos"
-            placeholder="8Gb, 511gn 1tb"
-          />
+          <label for="ultimoPorcentajeAumento">% Último Aumento</label>
+          <input id="ultimoPorcentajeAumento" name="ultimoPorcentajeAumento" type="number" step="0.1"
+            [(ngModel)]="user.ultimoPorcentajeAumento" placeholder="10.5" />
+        </div>
+
+        <div class="form-group">
+          <label for="fechaInicioTrabajo">Inicio en la empresa</label>
+          <input id="fechaInicioTrabajo" name="fechaInicioTrabajo" type="date" [(ngModel)]="user.fechaInicioTrabajo"
+            required />
         </div>
       </div>
 
-      <div class="form-actions">
-        <button
-          type="submit"
-          class="submit-btn"
-          [disabled]="!userForm.form.valid"
-        >
-          Enviar
-        </button>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="numeroSerie">No. de Serie del Equipo</label>
+          <input id="numeroSerie" name="numeroSerie" type="text" [(ngModel)]="user.numeroSerie"
+            placeholder="NS-2025-001" />
+        </div>
+
+        <div class="form-group">
+          <label for="marca">Marca del Equipo</label>
+          <input id="marca" name="marca" type="text" [(ngModel)]="user.marca" placeholder="Dell, Lenovo, etc." />
+        </div>
+
+        <div class="form-group">
+          <label for="especificaciones">Especificaciones</label>
+          <textarea id="especificaciones" name="especificaciones" [(ngModel)]="user.especificaciones"
+            placeholder="Ej. Intel Core i7, 16GB RAM, 512GB SSD"></textarea>
+        </div>
       </div>
+
     </form>
   </main>
 </div>
