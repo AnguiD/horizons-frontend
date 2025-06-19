@@ -6,7 +6,7 @@
   <main class="main-content">
     <div class="list-box">
       <h2>Gestión de Empresas</h2>
-      <button class="action-btn edit-btn" (click)="abrirModal()">+ Nueva Empresa</button>
+      <button class="action-btn edit-btn" (click)="abrirModal()">Nueva Empresa</button>
       <table class="company-table">
         <thead>
           <tr>
@@ -37,4 +37,20 @@
   </main>
 </div>
 
-<company-create *ngIf="modalAbierto" (cerrar)="cerrarModal()"></company-create>
+<company-create
+*ngIf="modalAbierto"
+(cerrar)="cerrarModal()">
+</company-create>
+
+<company-edit
+  *ngIf="modalEditAbierto"
+  [empresa]="empresaSeleccionada!"
+  (cerrar)="cerrarModalEdit()"
+  (actualizarEmpresa)="actualizarEmpresa($event)">
+</company-edit>
+
+<company-detail
+  *ngIf="modalViewAbierto"
+  [empresa]="empresaDetalleSeleccionada"
+  (cerrar)="cerrarModalView()">
+</company-detail>

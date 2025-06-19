@@ -1,10 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { SidebarComponent } from '../../sidebar/sidebar.component';
-import { HeaderComponent } from "../../header/header.component";
 
-interface Company {
+export interface Company {
+  id?: number;
   nombre: string;
   direccion: string;
   telefono: string;
@@ -12,31 +10,17 @@ interface Company {
 }
 
 @Component({
-  selector: 'app-company-detail',
+  selector: 'company-detail',
   standalone: true,
-  imports: [CommonModule, HeaderComponent],
+  imports: [CommonModule],
   templateUrl: './company-detail.component.html',
   styleUrls: ['./company-detail.component.css']
 })
-export class CompanyDetailComponent implements OnInit {
-  id!: number;
-  empresa: Company = { nombre: '', direccion: '', telefono: '', email: '' };
+export class CompanyDetailComponent {
+  @Input() empresa: Company | null = null;
+  @Output() cerrar = new EventEmitter<void>();
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
-
-  ngOnInit() {
-    this.id = +this.route.snapshot.paramMap.get('id')!;
-
-    this.empresa = {
-      nombre: 'Demo Corp.',
-      direccion: 'Demo 123',
-      telefono: '55-2222-3333',
-      email: 'demo@demo.com'
-    };
-  }
-
-  goBack() {
-    this.router.navigate(['/empresas']);
+  cerrarModal() {
+    this.cerrar.emit();
   }
 }
-
