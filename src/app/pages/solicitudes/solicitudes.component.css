@@ -105,7 +105,7 @@
     padding: 1.5rem;
     border-bottom: 1px solid #f3f4f6;
     display: grid;
-    grid-template-columns: 1fr 120px 120px 220px;
+    grid-template-columns: 1fr 110px 120px 260px;
     gap: 1rem;
     align-items: center;
 }
@@ -131,7 +131,6 @@
     color: #6b7280;
 }
 
-/* Estados */
 .request-status {
     padding: 0.25rem 0.75rem;
     border-radius: 20px;
@@ -155,7 +154,6 @@
     color: #dc2626;
 }
 
-/* Botones de acción */
 .request-actions {
     display: flex;
     gap: 0.5rem;
@@ -190,7 +188,6 @@
     opacity: 0.8;
 }
 
-/* Versión fija */
 .version-info {
     position: fixed;
     bottom: 1rem;
@@ -202,7 +199,14 @@
     color: #999999;
 }
 
-/* Responsive */
+.chat-row {
+    grid-column: 1 / -1;
+    width: 100%;
+    background: transparent;
+    padding: 0 0 1.5rem 0;
+}
+
+
 @media (max-width: 768px) {
     .container {
         flex-direction: column;

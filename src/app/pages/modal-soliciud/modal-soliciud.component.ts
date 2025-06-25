@@ -10,17 +10,22 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./modal-soliciud.component.css']
 })
 export class ModalSoliciudComponent {
+  @Output() guardarSolicitud = new EventEmitter<any>();
   @Output() cerrar = new EventEmitter<void>();
 
   solicitud = {
     tipo: '',
     fechaInicio: '',
     fechaFin: '',
-    motivo: ''
+    duracion: '',
+    motivo: '',
+    estado: 'Pendiente',
+    fechaSolicitud: new Date().toISOString().split('T')[0],
   };
 
   guardar() {
     console.log('Solicitud enviada:', this.solicitud);
+    this.guardarSolicitud.emit({ ...this.solicitud });  // Emite los datos
     this.cerrar.emit();
   }
 }

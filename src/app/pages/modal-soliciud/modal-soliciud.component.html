@@ -4,7 +4,6 @@
             <h2>Nueva Solicitud</h2>
             <button class="cerrar-btn" (click)="cerrar.emit()">✕</button>
         </div>
-
         <div class="modal-body">
             <label>Tipo de Solicitud</label>
             <select [(ngModel)]="solicitud.tipo">
@@ -14,23 +13,26 @@
                 <option>Capacitación</option>
                 <option>Día de Descanso</option>
             </select>
+            <ng-container *ngIf="solicitud.tipo && solicitud.tipo !== 'Capacitación'">
+                <label>Fecha Inicio</label>
+                <input type="date" [(ngModel)]="solicitud.fechaInicio" />
 
-            <label>Fecha Inicio</label>
-            <input type="date" [(ngModel)]="solicitud.fechaInicio" />
-
-            <label>Fecha Fin</label>
-            <input type="date" [(ngModel)]="solicitud.fechaFin" />
+                <label>Fecha Fin</label>
+                <input type="date" [(ngModel)]="solicitud.fechaFin" />
+            </ng-container>
+            <ng-container *ngIf="solicitud.tipo === 'Capacitación'">
+                <label>Duración</label>
+                <input type="text" [(ngModel)]="solicitud.duracion" placeholder="Ej. 20 horas" />
+            </ng-container>
 
             <label>Motivo (opcional)</label>
             <textarea rows="3" [(ngModel)]="solicitud.motivo"
                 placeholder="Ej. Cita médica, compensación, etc."></textarea>
         </div>
-
         <div class="modal-footer">
             <button class="cancelar" (click)="cerrar.emit()">Cancelar</button>
             <button class="guardar" (click)="guardar()">Guardar</button>
         </div>
     </div>
 </div>
-
 
