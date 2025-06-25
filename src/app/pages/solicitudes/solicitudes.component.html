@@ -40,67 +40,58 @@
     </div>
     <div class="requests-table">
       <div class="table-header">Solicitudes Recientes</div>
-      <div class="request-item">
+      <div class="request-item" *ngFor="let solicitud of solicitudes; let idx = index">
         <div class="request-info">
-          <h3>Solicitud de Vacaciones</h3>
-          <p>Del 15 al 25 de Febrero, 2024</p>
+          <h3>{{ solicitud.tipo }}</h3>
+          <p
+            *ngIf="solicitud.tipo === 'Vacaciones' || solicitud.tipo === 'Permiso Personal' || solicitud.tipo === 'Dia de Descanso'">
+            Del {{ solicitud.fechaInicio | date:'dd MMM yyyy' }}
+            al {{ solicitud.fechaFin | date:'dd MMM yyyy' }}
+          </p>
+          <p *ngIf="solicitud.tipo === 'Capacitación Externa'">
+            {{ solicitud.motivo }} - {{ solicitud.duracion }}
+          </p>
+          <p *ngIf="!solicitud.fechaInicio && !solicitud.duracion">{{ solicitud.motivo }}</p>
         </div>
-        <div class="request-date">10 Ene 2024</div>
-        <div class="request-status status-pending">Pendiente</div>
+        <div class="request-date">{{ solicitud.fechaSolicitud | date:'dd MMM yyyy' }}</div>
+        <div class="request-status" [ngClass]="{
+          'status-pending': solicitud.estado === 'Pendiente' || !solicitud.estado,
+          'status-approved': solicitud.estado === 'Aprobado',
+          'status-rejected': solicitud.estado === 'Rechazado'
+        }">
+          {{ solicitud.estado || 'Pendiente' }}
+        </div>
         <div class="request-actions">
-          <button class="action-btn view-btn" (click)="viewRequest(1)">
-            Ver
+          <button class="action-btn view-btn" (click)="toggleChat(idx)">
+            {{ chatAbiertoIndex === idx ? 'Ocultar' : 'Ver' }}
           </button>
-          <button class="action-btn edit-btn" (click)="editRequest(1)">
-            Editar
-          </button>
-          <button class="action-btn delete-btn" (click)="deleteRequest(1)">
-            Eliminar
-          </button>
+          <ng-container *ngIf="solicitud.estado === 'Pendiente' || !solicitud.estado">
+            <button class="action-btn edit-btn" (click)="editRequest(solicitud.id)">
+              Editar
+            </button>
+            <button class="action-btn delete-btn" (click)="deleteRequest(solicitud.id)">
+              Eliminar
+            </button>
+          </ng-container>
         </div>
-      </div>
-      <div class="request-item">
-        <div class="request-info">
-          <h3>Permiso Personal</h3>
-          <p>Cita médica - 5 de Enero, 2024</p>
-        </div>
-        <div class="request-date">3 Ene 2024</div>
-        <div class="request-status status-approved">Aprobado</div>
-        <div class="request-actions">
-          <button class="action-btn view-btn" (click)="viewRequest(2)">
-            Ver
-          </button>
-        </div>
-      </div>
-      <div class="request-item">
-        <div class="request-info">
-          <h3>Capacitación Externa</h3>
-          <p>Curso de Liderazgo - 20 horas</p>
-        </div>
-        <div class="request-date">28 Dic 2023</div>
-        <div class="request-status status-approved">Aprobado</div>
-        <div class="request-actions">
-          <button class="action-btn view-btn" (click)="viewRequest(3)">
-            Ver
-          </button>
-        </div>
-      </div>
-      <div class="request-item">
-        <div class="request-info">
-          <h3>Día de Descanso</h3>
-          <p>Compensación por trabajo extra</p>
-        </div>
-        <div class="request-date">20 Dic 2023</div>
-        <div class="request-status status-rejected">Rechazado</div>
-        <div class="request-actions">
-          <button class="action-btn view-btn" (click)="viewRequest(4)">
-            Ver
-          </button>
+        <div class="chat-row" *ngIf="chatAbiertoIndex === idx">
+          <app-solicitud-chat [solicitud]="solicitud" (cerrar)="chatAbiertoIndex = null">
+          </app-solicitud-chat>
         </div>
       </div>
     </div>
+    <div class="no-requests" *ngIf="solicitudes.length === 0">
+      No tienes solicitudes recientes.
+    </div>
   </main>
 </div>
-<app-modal-soliciud *ngIf="modalAbierto" (cerrar)="cerrarModal()"></app-modal-soliciud>
-<div class="version-info">horizons 1.0.0</div>
+<app-modal-soliciud *ngIf="modalAbierto" (cerrar)="cerrarModal()" (guardarSolicitud)="agregarSolicitud($event)">
+</app-modal-soliciud>
 
+<app-solicitud-chat *ngIf="chatAbierto && solicitudSeleccionada" [solicitud]="solicitudSeleccionada"
+  (cerrar)="chatAbierto = false; solicitudSeleccionada = null;">
+</app-solicitud-chat>
+
+<app-modal-editar-solicitud *ngIf="modalEditarAbierto && solicitudEditar" [solicitud]="solicitudEditar!"
+  (cerrar)="cerrarModalEditar()" (actualizar)="actualizarSolicitud($event)">
+</app-modal-editar-solicitud>

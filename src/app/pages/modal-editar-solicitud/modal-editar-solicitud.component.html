@@ -1,38 +1,39 @@
 <div class="modal-backdrop">
     <div class="modal">
         <div class="modal-header">
-            <h2>Nueva Solicitud</h2>
+            <h2>Editar Solicitud</h2>
             <button class="cerrar-btn" (click)="cerrar.emit()">✕</button>
         </div>
+
         <div class="modal-body">
             <label>Tipo de Solicitud</label>
-            <select [(ngModel)]="solicitud.tipo">
+            <select [(ngModel)]="solicitudCopia.tipo">
                 <option value="">Seleccione una opción</option>
                 <option>Vacaciones</option>
                 <option>Permiso Personal</option>
                 <option>Capacitación</option>
                 <option>Día de Descanso</option>
             </select>
-            <ng-container *ngIf="solicitud.tipo && solicitud.tipo !== 'Capacitación'">
+            <ng-container *ngIf="solicitudCopia.tipo && solicitudCopia.tipo !== 'Capacitación'">
                 <label>Fecha Inicio</label>
-                <input type="date" [(ngModel)]="solicitud.fechaInicio" />
+                <input type="date" [(ngModel)]="solicitudCopia.fechaInicio" />
 
                 <label>Fecha Fin</label>
-                <input type="date" [(ngModel)]="solicitud.fechaFin" />
+                <input type="date" [(ngModel)]="solicitudCopia.fechaFin" />
             </ng-container>
-            <ng-container *ngIf="solicitud.tipo === 'Capacitación'">
+            <ng-container *ngIf="solicitudCopia.tipo === 'Capacitación'">
                 <label>Duración</label>
-                <input type="text" [(ngModel)]="solicitud.duracion" placeholder="Ej. 20 horas" />
+                <input type="text" [(ngModel)]="solicitudCopia.duracion" placeholder="Ej. 20 horas" />
             </ng-container>
 
             <label>Motivo (opcional)</label>
-            <textarea rows="3" [(ngModel)]="solicitud.motivo"
+            <textarea rows="3" [(ngModel)]="solicitudCopia.motivo"
                 placeholder="Ej. Cita médica, compensación, etc."></textarea>
         </div>
+
         <div class="modal-footer">
             <button class="cancelar" (click)="cerrar.emit()">Cancelar</button>
-            <button class="guardar" (click)="guardar()">Guardar</button>
+            <button class="guardar" (click)="guardar()">Actualizar</button>
         </div>
     </div>
 </div>
-
