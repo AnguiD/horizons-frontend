@@ -14,7 +14,7 @@ export interface Vacante {
 
 export interface Aspirante {
     id: number;
-    vacanteId: number;
+    vacante: string;
     nombre: string;
     correo: string;
     telefono: string;
@@ -32,8 +32,8 @@ export class ReclutamientoService {
             titulo: 'Desarrollador Angular',
             descripcion: 'Se busca desarrollador con 2 años de experiencia en Angular.',
             requisitos: 'Angular, TypeScript, HTML, CSS',
-            fechaInicio: new Date('2024-06-01'),
-            fechaFin: new Date('2024-06-30'),
+            fechaInicio: new Date('2025-06-01'),
+            fechaFin: new Date('2025-06-30'),
             area: 'Desarrollo',
             estado: 'Activa'
         },
@@ -42,8 +42,8 @@ export class ReclutamientoService {
             titulo: 'Analista QA',
             descripcion: 'Encargado de pruebas funcionales y de integración.',
             requisitos: 'Testing manual, automatización con Selenium',
-            fechaInicio: new Date('2024-05-15'),
-            fechaFin: new Date('2024-06-15'),
+            fechaInicio: new Date('2025-07-15'),
+            fechaFin: new Date('2025-07-29'),
             area: 'Calidad',
             estado: 'Activa'
         },
@@ -52,8 +52,8 @@ export class ReclutamientoService {
             titulo: 'Diseñador UX/UI',
             descripcion: 'Diseñar interfaces y experiencias de usuario para plataforma web.',
             requisitos: 'Figma, Sketch, Adobe XD',
-            fechaInicio: new Date('2024-07-01'),
-            fechaFin: new Date('2024-07-31'),
+            fechaInicio: new Date('2025-07-01'),
+            fechaFin: new Date('2025-07-31'),
             area: 'Diseño',
             estado: 'Activa'
         }
@@ -62,7 +62,7 @@ export class ReclutamientoService {
     private aspirantes: Aspirante[] = [
         {
             id: 1,
-            vacanteId: 1,
+            vacante: 'Desarrollador Angular',
             nombre: 'María López',
             correo: 'maria.lopez@example.com',
             telefono: '555-123-4567',
@@ -73,7 +73,7 @@ export class ReclutamientoService {
         },
         {
             id: 2,
-            vacanteId: 1,
+            vacante: 'Desarrollador Angular',
             nombre: 'Juan Pérez',
             correo: 'juan.perez@example.com',
             telefono: '555-987-6543',
@@ -84,7 +84,7 @@ export class ReclutamientoService {
         },
         {
             id: 3,
-            vacanteId: 2,
+            vacante: 'Analista QA',
             nombre: 'Ana Gómez',
             correo: 'ana.gomez@example.com',
             telefono: '555-222-3333',
@@ -124,7 +124,8 @@ export class ReclutamientoService {
     }
 
     getAspirantesByVacante(vacanteId: number): Observable<Aspirante[]> {
-        return of(this.aspirantes.filter(a => a.vacanteId === vacanteId));
+        const vacante = this.vacantesSubject.value.find(v => v.id === vacanteId);
+        return of(this.aspirantes.filter(a => a.vacante === vacante?.titulo));
     }
 
     registerAspirante(aspirante: Aspirante): Observable<void> {

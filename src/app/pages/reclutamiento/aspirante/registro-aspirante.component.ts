@@ -15,7 +15,7 @@ import { SidebarComponent } from "../../sidebar/sidebar.component";
 })
 export class RegistroAspiranteComponent implements OnInit {
     aspiranteForm!: FormGroup;
-    vacanteId!: number;
+    vacante!: string;
 
     constructor(
         private fb: FormBuilder,
@@ -25,7 +25,7 @@ export class RegistroAspiranteComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this.vacanteId = +this.route.snapshot.paramMap.get('vacanteId')!;
+        this.vacante = this.route.snapshot.paramMap.get('vacante')!;
         this.aspiranteForm = this.fb.group({
             nombre: ['', [Validators.required]],
             correo: ['', [Validators.required, Validators.email]],
@@ -41,7 +41,7 @@ export class RegistroAspiranteComponent implements OnInit {
         const formValue = this.aspiranteForm.value;
         const nuevoAspirante: Aspirante = {
             id: 0,
-            vacanteId: this.vacanteId,
+            vacante: this.vacante,
             nombre: formValue.nombre,
             correo: formValue.correo,
             telefono: formValue.telefono,

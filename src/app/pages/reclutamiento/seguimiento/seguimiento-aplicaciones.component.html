@@ -8,8 +8,7 @@
       <form
         [formGroup]="formularioFiltro"
         (ngSubmit)="aplicarFiltros()"
-        class="filtros-form"
-      >
+        class="filtros-form">
         <div class="form-row">
           <div class="form-group">
             <label for="experiencia">Experiencia</label>
@@ -17,8 +16,7 @@
               id="experiencia"
               formControlName="experiencia"
               type="text"
-              placeholder="Ej. 3 años"
-            />
+              placeholder="Ej. 3 años" />
           </div>
           <div class="form-group">
             <label for="habilidad">Habilidad</label>
@@ -26,13 +24,12 @@
               id="habilidad"
               formControlName="habilidad"
               type="text"
-              placeholder="Ej. Angular"
-            />
+              placeholder="Ej. Angular" />
           </div>
           <div class="form-group">
             <label for="estado">Estado</label>
             <select id="estado" formControlName="estado">
-              <option value="">Todos</option>
+              <option value>Todos</option>
               <option value="Recibida">Recibida</option>
               <option value="En Revisión">En Revisión</option>
               <option value="Aceptada">Aceptada</option>
@@ -42,8 +39,8 @@
         </div>
         <div class="form-actions">
           <button type="submit" class="btn-primary">Aplicar Filtros</button>
-          <button type="button" class="btn-outline" (click)="exportarExcel()">
-            Exportar a Excel
+          <button type="button" class="btn-outline" (click)="exportarPDF()">
+            Exportar a PDF
           </button>
         </div>
       </form>
@@ -54,7 +51,7 @@
         <thead>
           <tr>
             <th>ID</th>
-            <th>Vacante ID</th>
+            <th>Vacante</th>
             <th>Nombre</th>
             <th>Correo</th>
             <th>Estado</th>
@@ -64,7 +61,7 @@
         <tbody>
           <tr *ngFor="let a of aspirantesFiltrados">
             <td>{{ a.id }}</td>
-            <td>{{ a.vacanteId }}</td>
+            <td>{{ a.vacante }}</td>
             <td>{{ a.nombre }}</td>
             <td>{{ a.correo }}</td>
             <td>
@@ -74,9 +71,7 @@
                   'status-revision': a.estadoPostulacion === 'En Revisión',
                   'status-aceptada': a.estadoPostulacion === 'Aceptada',
                   'status-rechazada': a.estadoPostulacion === 'Rechazada'
-                }"
-                >{{ a.estadoPostulacion }}</span
-              >
+                }">{{ a.estadoPostulacion }}</span>
             </td>
             <td class="actions-cell">
               <button
@@ -85,9 +80,14 @@
                   a.estadoPostulacion === 'Recibida' ||
                   a.estadoPostulacion === 'En Revisión'
                 "
-                (click)="aceptarAspirante(a.id)"
-              >
+                (click)="aceptarAspirante(a.id)">
                 Aceptar
+              </button>
+              <button
+                class="btn-small btn-review"
+                *ngIf="a.estadoPostulacion === 'Recibida'"
+                (click)="enRevisionAspirante(a.id)">
+                En Revisión
               </button>
               <button
                 class="btn-small btn-reject"
@@ -95,8 +95,7 @@
                   a.estadoPostulacion === 'Recibida' ||
                   a.estadoPostulacion === 'En Revisión'
                 "
-                (click)="rechazarAspirante(a.id)"
-              >
+                (click)="rechazarAspirante(a.id)">
                 Rechazar
               </button>
             </td>
