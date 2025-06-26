@@ -2,48 +2,40 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-export interface SolicitudDetalle {
+export interface Ticket {
   id: number;
-  tipo: string;
-  fechaInicio?: string;
-  fechaFin?: string;
-  motivo?: string;
-  estado?: string;
-  duracion?: string;
-  fechaSolicitud: string;
-  comentarios?:  ComentarioSolicitud[];
+  asunto: string;
+  descripcion: string;
+  estado: string;
+  comentarios?: ComentarioSoporte[];
 }
 
-export interface ComentarioSolicitud {
+export interface ComentarioSoporte {
   autor: string;
   rol: string;
   mensaje: string;
   fecha?: string;
 }
 
-
 @Component({
-  selector: 'app-solicitud-chat',
-  templateUrl: './solicitud-chat.component.html',
+  selector: 'app-ticket-chat',
+  standalone: true,
   imports: [CommonModule, FormsModule],
-  styleUrls: ['./solicitud-chat.component.css'],
-  standalone: true
+  templateUrl: './ticket-chat.component.html',
+  styleUrls: ['./ticket-chat.component.css']
 })
-
-export class SolicitudChatComponent {
-  @Input() solicitud!: SolicitudDetalle;
+export class TicketChatComponent {
+  @Input() ticket: any;
   @Output() cerrar = new EventEmitter<void>();
 
   nuevoComentario = '';
   nuevoRol = 'Colaborador';
-  nuevoAutor = 'Juan Pérez';
+  nuevoAutor = 'Tú';
 
   enviarComentario() {
     if (this.nuevoComentario.trim() && this.nuevoAutor.trim()) {
-      if (!this.solicitud.comentarios) {
-        this.solicitud.comentarios = [];
-      }
-      this.solicitud.comentarios.push({
+      if (!this.ticket.comentarios) this.ticket.comentarios = [];
+      this.ticket.comentarios.push({
         autor: this.nuevoAutor,
         rol: this.nuevoRol,
         mensaje: this.nuevoComentario,
@@ -53,5 +45,3 @@ export class SolicitudChatComponent {
     }
   }
 }
-
-

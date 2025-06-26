@@ -20,24 +20,34 @@
                         <th>Asunto</th>
                         <th>Descripción</th>
                         <th>Estatus</th>
+                        <th>Comentarios</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let ticket of ticketsFiltrados">
-                        <td>{{ ticket.id }}</td>
-                        <td>{{ ticket.asunto }}</td>
-                        <td>{{ ticket.descripcion }}</td>
-                        <td>
-                            <span class="badge" [ngClass]="{
-            'pendiente': ticket.estado === 'Pendiente',
-            'proceso': ticket.estado === 'En proceso',
-            'resuelto': ticket.estado === 'Resuelto'
-            }">{{ ticket.estado }}</span>
-                        </td>
-                    </tr>
-                    <tr *ngIf="ticketsFiltrados.length === 0">
-                        <td colspan="4" class="no-results">No se encontraron tickets</td>
-                    </tr>
+                    <ng-container *ngFor="let ticket of ticketsFiltrados; let idx = index">
+                        <tr>
+                            <td>{{ ticket.id }}</td>
+                            <td>{{ ticket.asunto }}</td>
+                            <td>{{ ticket.descripcion }}</td>
+                            <td>
+                                <span class="badge" [ngClass]="{
+                                    'pendiente': ticket.estado === 'Pendiente',
+                                    'proceso': ticket.estado === 'En proceso',
+                                    'resuelto': ticket.estado === 'Resuelto'
+                                }">{{ ticket.estado }}</span>
+                            </td>
+                            <td>
+                                <button (click)="toggleChat(idx)" class="coment-btn">
+                                    {{ chatAbierto === idx ? 'Ocultar' : 'Ver comentarios' }}
+                                </button>
+                            </td>
+                        </tr>
+                        <tr *ngIf="chatAbierto === idx" class="chat-row">
+                            <td colspan="5" style="padding:0;">
+                                <app-ticket-chat [ticket]="ticket" (cerrar)="chatAbierto = null"></app-ticket-chat>
+                            </td>
+                        </tr>
+                    </ng-container>
                 </tbody>
             </table>
         </div>

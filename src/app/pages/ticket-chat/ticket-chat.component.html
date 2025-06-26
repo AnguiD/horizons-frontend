@@ -1,10 +1,8 @@
 <div class="chat-container">
     <div class="comentarios-section">
-        <h3>Motivo de la Solicitud</h3>
-        <p class="motivo-text">{{ solicitud.motivo || 'No se proporcionó motivo.' }}</p>
         <h4>Comentarios</h4>
-        <div *ngIf="!solicitud.comentarios?.length" class="comentario-vacio">No hay comentarios.</div>
-        <div *ngFor="let comentario of solicitud.comentarios" class="comentario-card"
+        <div *ngIf="!ticket.comentarios?.length" class="comentario-vacio">No hay comentarios.</div>
+        <div *ngFor="let comentario of ticket.comentarios" class="comentario-card"
             [ngClass]="comentario.rol.toLowerCase()">
             <div class="comentario-header">
                 <span class="comentario-autor">{{ comentario.autor }}</span>
