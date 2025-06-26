@@ -1,0 +1,250 @@
+.drawer-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.12);
+    z-index: 1999;
+}
+
+.drawer-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 380px;
+    height: 100vh;
+    background: #fff;
+    box-shadow: -4px 0 18px 0 rgba(0, 0, 0, 0.10);
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    animation: drawerIn 0.3s;
+}
+
+@keyframes drawerIn {
+    from {
+        right: -420px;
+    }
+
+    to {
+        right: 0;
+    }
+}
+
+.drawer-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.1rem 1.5rem 0.5rem 1.5rem;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.drawer-close {
+    background: none;
+    border: none;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+.drawer-body {
+    padding: 1.5rem;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.detalle-box {
+    background: #f7f7fa;
+    border-radius: 9px;
+    padding: 1.2rem;
+    margin-bottom: 1.1rem;
+    border: 1px solid #eee;
+}
+
+.detalle-row {
+    margin-bottom: 0.55rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.detalle-row span:first-child {
+    font-weight: 600;
+    color: #222;
+    margin-right: 1rem;
+}
+
+.badge {
+    padding: 0.18rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.badge-pendiente {
+    background: #fff3e6;
+    color: #ee7202;
+}
+
+.badge-aprobado {
+    background: #d1fae5;
+    color: #089981;
+}
+
+.badge-rechazado {
+    background: #fee2e2;
+    color: #ef4444;
+}
+
+.comentarios-section {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.comentarios-section h4 {
+    margin-bottom: 1rem;
+    color: #ee7202;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.comentario-card {
+    background: #f5f7fa;
+    border-radius: 14px 14px 0px 14px;
+    margin-bottom: 0.8rem;
+    padding: 0.85rem 1.3rem 0.85rem 1.2rem;
+    box-shadow: 0 1px 4px #ee72022a;
+    border-left: none;
+    border-right: 5px solid #ee7202;
+    max-width: 480px;
+    min-width: 230px;
+    text-align: left;
+    position: relative;
+    transition: background 0.13s;
+}
+
+.comentario-card.self {
+    background: #e0f7fa;
+    border: 1px solid #b2ebf2;
+}
+
+.comentario-user {
+    font-size: 0.89rem;
+    color: #b27a04;
+    font-weight: 500;
+    margin-bottom: 2px;
+}
+
+.comentario-card.self .comentario-user {
+    color: #0490b2;
+}
+
+.comentario-text {
+    color: #333;
+    font-size: 1.02rem;
+    padding-left: 2px;
+}
+
+.comentario-form {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1.2rem;
+    width: 100%;
+}
+
+.comentario-form input {
+    flex: 1;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+}
+
+.comentario-form button {
+    background: #ee7202;
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    padding: 0.6rem 1.2rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.15s;
+}
+
+.comentario-form button:hover {
+    background: #cf6102;
+}
+
+.comentario-card {
+    background: #f1f2f6;
+    border-radius: 8px;
+    margin-bottom: 0.8rem;
+    padding: 0.75rem 1rem;
+    box-shadow: 0 1px 6px rgba(238, 114, 2, 0.06);
+}
+
+.comentario-card.soporte {
+    border-left: 4px solid #ee7202;
+    align-self: start;
+}
+
+.comentario-card.colaborador {
+    border-left: 4px solid #0097a7;
+    border-right: 4px solid #0097a7;
+    align-self: end;
+}
+
+.comentario-card.admin {
+    border-left: 4px solid #8b5cf6;
+    border-right: 4px solid #8b5cf6;
+    align-self: start;
+}
+
+.comentario-card.super\ admin {
+    border-left: 4px solid #ff9800;
+    border-right: 4px solid #ff9800;
+    align-self: start;
+}
+
+.comentario-header {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 3px;
+}
+
+.comentario-autor {
+    font-weight: 600;
+    color: #444;
+}
+
+.comentario-rol {
+    font-size: 0.95em;
+    font-weight: 500;
+    color: #fff;
+    background: #ee7202;
+    border-radius: 7px;
+    padding: 2px 10px;
+    margin-left: 6px;
+}
+
+.comentario-card.Soporte .comentario-rol {
+    background: #ee7202;
+}
+
+.comentario-card.colaborador .comentario-rol {
+    background: #0097a7;
+}
+
+.comentario-card.admin .comentario-rol {
+    background: #8b5cf6;
+}
+
+.comentario-card.super\ admin .comentario-rol {
+    background: #ff9800;
+}
+
+.comentario-fecha {
+    color: #888;
+    font-size: 0.82em;
+    margin-left: auto;
+}
+
