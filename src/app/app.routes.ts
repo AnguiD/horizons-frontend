@@ -24,6 +24,7 @@ import { CompanyCreateComponent } from './pages/empresas/agregarEmpresa/company-
 import { CompanyEditComponent } from './pages/empresas/editarEmpresa/company-edit.component';
 import { CompanyDetailComponent } from './pages/empresas/detallesEmpresa/company-detail.component';
 import { NgModule } from '@angular/core';
+import { SoporteTecnicoComponent } from './pages/soporte-tecnico/soporte-tecnico.component';
 
 
 export const routes: Routes = [
@@ -53,6 +54,7 @@ export const routes: Routes = [
   { path: 'empresas/editar/:id', component: CompanyEditComponent },
   { path: 'empresas/:id', component: CompanyDetailComponent },
   { path: 'administrador/solicitudes', component: SolicitudesRecibidasComponent },
+  { path: 'administrador/soporte', component: SoporteTecnicoComponent },
 
 ];
 

@@ -9,12 +9,15 @@ export interface Ticket {
   estado: string;
   comentarios?: ComentarioSoporte[];
 }
-
 export interface ComentarioSoporte {
   autor: string;
   rol: string;
   mensaje: string;
   fecha?: string;
+}
+export interface UsuarioActual {
+  nombre: string;
+  rol: string;
 }
 
 @Component({
@@ -26,11 +29,19 @@ export interface ComentarioSoporte {
 })
 export class TicketChatComponent {
   @Input() ticket: any;
-  @Output() cerrar = new EventEmitter<void>();
+  @Input() usuarioActual!: UsuarioActual; // <-- Recibe el usuario actual
 
   nuevoComentario = '';
-  nuevoRol = 'Colaborador';
-  nuevoAutor = 'Tú';
+  nuevoRol = '';
+  nuevoAutor = '';
+
+  ngOnInit() {
+    // Asigna los valores actuales al formulario para el usuario activo
+    if (this.usuarioActual) {
+      this.nuevoRol = this.usuarioActual.rol;
+      this.nuevoAutor = this.usuarioActual.nombre;
+    }
+  }
 
   enviarComentario() {
     if (this.nuevoComentario.trim() && this.nuevoAutor.trim()) {
@@ -43,5 +54,10 @@ export class TicketChatComponent {
       });
       this.nuevoComentario = '';
     }
+  }
+
+  // Devuelve true si el comentario es del usuario actual
+  esPropioComentario(comentario: ComentarioSoporte) {
+    return comentario.autor === this.usuarioActual.nombre && comentario.rol === this.usuarioActual.rol;
   }
 }

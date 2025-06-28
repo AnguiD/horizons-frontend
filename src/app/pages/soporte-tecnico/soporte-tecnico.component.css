@@ -1,0 +1,129 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    display: flex;
+    min-height: calc(100vh - 80px);
+}
+
+.main-content {
+    flex: 1;
+    padding: 2rem;
+    background: #f9fafb;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.page-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #ee7202;
+}
+
+.section-title {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: #ee7202;
+}
+
+.new-ticket-btn {
+    background: #ee7202;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.new-ticket-btn:hover {
+    background: #d46201;
+}
+
+
+.search {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.ticket-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.ticket-table th,
+.ticket-table td {
+    padding: 0.75rem;
+    border-bottom: 1px solid #e5e7eb;
+    text-align: left;
+}
+
+.ticket-table th:nth-child(2),
+.ticket-table td:nth-child(2) {
+    width: 20%;
+}
+
+.ticket-table th:nth-child(3),
+.ticket-table td:nth-child(3) {
+    width: 25%;
+}
+
+.ticket-table th {
+    color: #ee7202;
+}
+
+.badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: white;
+}
+
+.pendiente {
+    background: #f59e0b;
+}
+
+.proceso {
+    background: #3b82f6;
+}
+
+.resuelto {
+    background: #10b981;
+}
+
+.no-results {
+    text-align: center;
+    color: #888;
+    padding: 1rem;
+}
+
+.coment-btn {
+    background: #e0e7ff;
+    color: #6366f1;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+    transition: background 0.2s;
+}
+
+.coment-btn:hover {
+    background: #c7d2fe;
+}
