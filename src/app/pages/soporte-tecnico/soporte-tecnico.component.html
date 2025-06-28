@@ -1,24 +1,22 @@
 <app-header></app-header>
-
 <div class="container">
     <app-sidebar></app-sidebar>
-
     <main class="main-content">
         <div class="page-header">
-            <h1 class="page-title">Soporte Técnico</h1>
-            <button class="new-ticket-btn" (click)="abrirModal()">+ Nuevo Ticket</button>
+            <h1 class="page-title">Soporte Técnico (Técnico/Owner)</h1>
         </div>
-
         <div class="listado">
-            <h2 class="section-title">Seguimiento de Tickets</h2>
-            <input type="text" class="search" [(ngModel)]="busqueda" placeholder="Buscar por asunto o descripción..." />
-
+            <h2 class="section-title">Tickets de Usuarios</h2>
+            <input type="text" class="search" [(ngModel)]="busqueda"
+                placeholder="Buscar por asunto, descripción o usuario..." />
             <table class="ticket-table">
                 <thead>
                     <tr>
                         <th>#</th>
                         <th>Asunto</th>
                         <th>Descripción</th>
+                        <th>Solicitante</th>
+                        <th>Rol</th>
                         <th>Estatus</th>
                         <th>Comentarios</th>
                     </tr>
@@ -29,26 +27,28 @@
                             <td>{{ ticket.id }}</td>
                             <td>{{ ticket.asunto }}</td>
                             <td>{{ ticket.descripcion }}</td>
+                            <td>{{ ticket.usuario.nombre }}</td>
+                            <td>{{ ticket.usuario.rol }}</td>
                             <td>
                                 <span class="badge" [ngClass]="{
-                                    'pendiente': ticket.estado === 'Pendiente',
-                                    'proceso': ticket.estado === 'En proceso',
-                                    'resuelto': ticket.estado === 'Resuelto'
-                                }">{{ ticket.estado }}</span>
+                'pendiente': ticket.estado === 'Pendiente',
+                'proceso': ticket.estado === 'En proceso',
+                'resuelto': ticket.estado === 'Resuelto'
+                }">{{ ticket.estado }}</span>
                             </td>
                             <td>
                                 <button (click)="toggleChat(idx)" class="coment-btn">
-                                    {{ chatAbierto === idx ? 'Ocultar' : 'Ver comentarios' }}
+                                    {{ chatAbierto === idx ? 'Ocultar' : 'Ver' }}
                                 </button>
                             </td>
                         </tr>
                         <tr *ngIf="chatAbierto === idx" class="chat-row">
-                            <td colspan="5" style="padding:0;">
+                            <td colspan="7" style="padding:0;">
                                 <app-ticket-chat
                                 [ticket]="ticket"
-                                [usuarioActual]="{ nombre: 'Juan Pérez', rol: 'Colaborador' }"
-                                (cerrar)="chatAbierto = null">
-                            </app-ticket-chat>
+                                [usuarioActual]="{ nombre: 'Sofía Admin', rol: 'Soporte' }"
+                                (cerrar)="chatAbierto = null"
+                                ></app-ticket-chat>
                             </td>
                         </tr>
                     </ng-container>
@@ -57,6 +57,3 @@
         </div>
     </main>
 </div>
-
-<app-modal-ticket *ngIf="modalAbierto" (cerrar)="cerrarModal()" (guardar)="agregarTicket($event)">
-</app-modal-ticket>

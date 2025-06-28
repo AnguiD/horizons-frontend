@@ -1,19 +1,18 @@
-<div class="chat-container">
-    <div class="comentarios-section">
-        <h4>Comentarios</h4>
-        <div *ngIf="!ticket.comentarios?.length" class="comentario-vacio">No hay comentarios.</div>
-        <div *ngFor="let comentario of ticket.comentarios" class="comentario-card"
-            [ngClass]="comentario.rol.toLowerCase()">
-            <div class="comentario-header">
-                <span class="comentario-autor">{{ comentario.autor }}</span>
-                <span class="comentario-rol">{{ comentario.rol }}</span>
-                <span class="comentario-fecha" *ngIf="comentario.fecha">{{ comentario.fecha | date:'short' }}</span>
-            </div>
-            <div class="comentario-text">{{ comentario.mensaje }}</div>
+<div class="comentarios-section">
+    <h4>Comentarios</h4>
+    <div *ngIf="!ticket.comentarios?.length" class="comentario-vacio">No hay comentarios.</div>
+    <div *ngFor="let comentario of ticket.comentarios"
+        class="comentario-card"
+        [ngClass]="[comentario.rol.toLowerCase(), esPropioComentario(comentario) ? 'self' : '']">
+        <div class="comentario-header">
+            <span class="comentario-autor">{{ comentario.autor }}</span>
+            <span class="comentario-rol">{{ comentario.rol }}</span>
+            <span class="comentario-fecha" *ngIf="comentario.fecha">{{ comentario.fecha | date:'short' }}</span>
         </div>
-        <form (ngSubmit)="enviarComentario()" class="comentario-form">
-            <input [(ngModel)]="nuevoComentario" name="comentario" placeholder="Escribe un comentario..." required />
-            <button type="submit" class="enviar-comentario-btn">Enviar</button>
-        </form>
+        <div class="comentario-text">{{ comentario.mensaje }}</div>
     </div>
+    <form (ngSubmit)="enviarComentario()" class="comentario-form">
+        <input [(ngModel)]="nuevoComentario" name="comentario" placeholder="Escribe un comentario..." required />
+        <button type="submit" class="enviar-comentario-btn">Enviar</button>
+    </form>
 </div>
