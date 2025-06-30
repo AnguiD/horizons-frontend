@@ -11,7 +11,7 @@ export interface SolicitudDetalle {
   estado?: string;
   duracion?: string;
   fechaSolicitud: string;
-  comentarios?:  ComentarioSolicitud[];
+  comentarios?: ComentarioSolicitud[];
 }
 
 export interface ComentarioSolicitud {
@@ -20,7 +20,6 @@ export interface ComentarioSolicitud {
   mensaje: string;
   fecha?: string;
 }
-
 
 @Component({
   selector: 'app-solicitud-chat',
@@ -32,25 +31,28 @@ export interface ComentarioSolicitud {
 
 export class SolicitudChatComponent {
   @Input() solicitud!: SolicitudDetalle;
+  @Input() usuarioActual!: { nombre: string; rol: string; email: string };
   @Output() cerrar = new EventEmitter<void>();
 
   nuevoComentario = '';
-  nuevoRol = 'Colaborador';
-  nuevoAutor = 'Juan Pérez';
 
   enviarComentario() {
-    if (this.nuevoComentario.trim() && this.nuevoAutor.trim()) {
+    if (this.nuevoComentario.trim() && this.usuarioActual.nombre && this.usuarioActual.rol) {
       if (!this.solicitud.comentarios) {
         this.solicitud.comentarios = [];
       }
       this.solicitud.comentarios.push({
-        autor: this.nuevoAutor,
-        rol: this.nuevoRol,
+        autor: this.usuarioActual.nombre,
+        rol: this.usuarioActual.rol,
         mensaje: this.nuevoComentario,
         fecha: new Date().toISOString()
       });
       this.nuevoComentario = '';
     }
+  }
+
+  esPropioComentario(comentario: ComentarioSolicitud) {
+    return comentario.autor === this.usuarioActual.nombre && comentario.rol === this.usuarioActual.rol;
   }
 }
 

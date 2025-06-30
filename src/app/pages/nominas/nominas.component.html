@@ -26,7 +26,7 @@
                         <td>{{ n.nombre }}</td>
                         <td>{{ n.fecha }}</td>
                         <td>
-                            <button class="btn-preview" (click)="verPDF(n)">Vista previa</button>
+                            <button class="btn-preview" (click)="abrirModal(n)">Vista previa</button>
                         </td>
                     </tr>
                     <tr *ngIf="filteredNominas.length === 0">
@@ -36,4 +36,18 @@
             </table>
         </div>
     </main>
+</div>
+
+<!-- Modal PDF -->
+<div class="modal-backdrop" *ngIf="modalAbierto">
+    <div class="modal-pdf">
+        <div class="modal-header">
+            <span class="modal-title">Vista previa PDF</span>
+            <button class="modal-close" (click)="cerrarModal()">✕</button>
+        </div>
+        <div class="modal-body">
+            <iframe *ngIf="pdfPreviewUrl" [src]="pdfPreviewUrl | safeUrl" width="100%" height="500" style="border:0;">
+            </iframe>
+        </div>
+    </div>
 </div>
