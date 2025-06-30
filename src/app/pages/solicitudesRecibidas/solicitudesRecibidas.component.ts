@@ -33,6 +33,7 @@ export class SolicitudesRecibidasComponent {
       fechaInicio: "2024-02-15",
       fechaFin: "2024-02-25",
       motivo: "Ya cumpli mi año de servicio, me corresponde vacaciones",
+      estado: "Pendiente",
       fechaSolicitud: "2024-01-10"
     },
     {
@@ -102,7 +103,7 @@ export class SolicitudesRecibidasComponent {
       fechaInicio: "2024-04-01",
       fechaFin: "2024-06-30",
       motivo: "Maternidad",
-      estado: "Aceptada",
+      estado: "Aprobado",
       fechaSolicitud: "2024-03-15",
       comentarios: [
         { autor: "Laura Martínez", rol: "Owner", mensaje: "Solicitud aceptada, disfruta de tu tiempo con el bebé", fecha: "2024-03-16T09:00" },
@@ -126,23 +127,17 @@ usuarioActual = {
   acceptRequest(id: number): void {
     const idx = this.solicitudesRecibidas.findIndex(r => r.id === id);
     if (idx !== -1) {
-      this.solicitudesRecibidas[idx].estado = 'Aceptada';
+      this.solicitudesRecibidas[idx].estado = 'Aprobado';
       alert(`Solicitud ID ${id} aceptada.`);
-      this.removeFromPending(id);
     }
   }
 
   rejectRequest(id: number): void {
     const idx = this.solicitudesRecibidas.findIndex(r => r.id === id);
     if (idx !== -1) {
-      this.solicitudesRecibidas[idx].estado = 'Rechazada';
+      this.solicitudesRecibidas[idx].estado = 'Rechazado';
       alert(`Solicitud ID ${id} rechazada.`);
-      this.removeFromPending(id);
     }
-  }
-
-  private removeFromPending(id: number): void {
-    this.solicitudesRecibidas = this.solicitudesRecibidas.filter(r => r.id !== id);
   }
 }
 
