@@ -29,14 +29,13 @@ export interface UsuarioActual {
 })
 export class TicketChatComponent {
   @Input() ticket: any;
-  @Input() usuarioActual!: UsuarioActual; // <-- Recibe el usuario actual
+  @Input() usuarioActual!: UsuarioActual;
 
   nuevoComentario = '';
   nuevoRol = '';
   nuevoAutor = '';
 
   ngOnInit() {
-    // Asigna los valores actuales al formulario para el usuario activo
     if (this.usuarioActual) {
       this.nuevoRol = this.usuarioActual.rol;
       this.nuevoAutor = this.usuarioActual.nombre;
@@ -56,7 +55,6 @@ export class TicketChatComponent {
     }
   }
 
-  // Devuelve true si el comentario es del usuario actual
   esPropioComentario(comentario: ComentarioSoporte) {
     return comentario.autor === this.usuarioActual.nombre && comentario.rol === this.usuarioActual.rol;
   }

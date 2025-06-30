@@ -88,12 +88,11 @@ export class SolicitudesComponent {
   }
 
   agregarSolicitud(nueva: any) {
-    // Asigna un id único. Aquí simplemente el siguiente consecutivo.
     console.log('Nueva solicitud recibida:', nueva);
     const nuevoId = this.solicitudes.length ? Math.max(...this.solicitudes.map(s => s.id || 0)) + 1 : 1;
     const solicitudConId = { ...nueva, id: nuevoId };
     this.solicitudes = [solicitudConId, ...this.solicitudes];
-    this.modalAbierto = false; // Cierra el modal después de guardar
+    this.modalAbierto = false;
 
     console.log('Nueva solicitud agregada:', solicitudConId);
   }

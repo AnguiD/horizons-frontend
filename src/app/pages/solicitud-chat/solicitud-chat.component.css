@@ -122,8 +122,11 @@
 }
 
 .comentario-card.self {
-    background: #e0f7fa;
-    border: 1px solid #b2ebf2;
+    background: #f5f7fa;
+    align-self: flex-end;
+    margin-left: auto;
+    margin-right: 0;
+    border-radius: 16px 16px 16px 0px;
 }
 
 .comentario-user {
@@ -183,13 +186,14 @@
 
 .comentario-card.owner {
     border-left: 4px solid #ee7202;
+    border-right: 4px solid #ee7202;
     align-self: start;
 }
 
 .comentario-card.colaborador {
     border-left: 4px solid #0097a7;
     border-right: 4px solid #0097a7;
-    align-self: end;
+    align-self: start;
 }
 
 .comentario-card.admin {
@@ -226,7 +230,7 @@
     margin-left: 6px;
 }
 
-.comentario-card.owner .comentario-rol {
+.comentario-card.Soporte .comentario-rol {
     background: #ee7202;
 }
 
@@ -247,4 +251,3 @@
     font-size: 0.82em;
     margin-left: auto;
 }
-
