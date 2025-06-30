@@ -14,6 +14,8 @@
             <th>Tipo de Solicitud</th>
             <th>Fecha Inicio</th>
             <th>Fecha Fin</th>
+            <th>Duración</th>
+            <th>Estado</th>
             <th>Acciones</th>
           </tr>
         </thead>
@@ -22,27 +24,32 @@
             <tr>
               <td>{{ req.empleado }}</td>
               <td>{{ req.tipo }}</td>
+              <td>{{ req.fechaInicio | date : "dd MMM yyyy" }}</td>
+              <td>{{ req.fechaFin | date : "dd MMM yyyy" }}</td>
+              <td>{{ req.duracion }}</td>
               <td>
-                {{ req.fechaInicio ? (req.fechaInicio | date : "dd MMM yyyy") : 'Curso:' }}
-              </td>
-              <td>
-                {{ req.fechaFin ? (req.fechaFin | date : "dd MMM yyyy") : req.duracion }}
+                <span class="request-status" [ngClass]="{
+                  'status-pending': req.estado === 'Pendiente' || !req.estado,
+                  'status-approved': req.estado === 'Aprobado',
+                  'status-rejected': req.estado === 'Rechazado'
+                }">
+                  {{ req.estado || 'Pendiente' }}
+                </span>
               </td>
               <td class="actions-cell">
-                <button class="btn-accept" (click)="acceptRequest(req.id)">Aceptar</button>
-                <button class="btn-reject" (click)="rejectRequest(req.id)">Rechazar</button>
+                <ng-container *ngIf="req.estado === 'Pendiente'">
+                  <button class="btn-accept" (click)="acceptRequest(req.id)">Aceptar</button>
+                  <button class="btn-reject" (click)="rejectRequest(req.id)">Rechazar</button>
+                </ng-container>
                 <button class="btn-chat" (click)="toggleChat(idx)">
                   {{ chatAbierto === idx ? 'Ocultar' : 'Ver Mas...' }}
                 </button>
               </td>
             </tr>
             <tr *ngIf="chatAbierto === idx" class="chat-row">
-              <td colspan="6" style="padding: 10px;">
-                <app-solicitud-chat
-                [solicitud]="req"
-                [usuarioActual]="usuarioActual"
-                (cerrar)="chatAbierto = null"
-                ></app-solicitud-chat>
+              <td colspan="8" style="padding: 10px;">
+                <app-solicitud-chat [solicitud]="req" [usuarioActual]="usuarioActual"
+                  (cerrar)="chatAbierto = null"></app-solicitud-chat>
               </td>
             </tr>
           </ng-container>
@@ -54,4 +61,3 @@
     </div>
   </main>
 </div>
-<div class="version-info">horizons 1.0.0</div>
