@@ -31,6 +31,7 @@ export class TicketChatComponent {
   @Input() ticket: any;
   @Input() usuarioActual!: UsuarioActual;
 
+
   nuevoComentario = '';
   nuevoRol = '';
   nuevoAutor = '';
