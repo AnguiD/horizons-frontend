@@ -32,23 +32,14 @@
       <button
         class="tab"
         [ngClass]="{ active: currentTab === 'recibidos' }"
-        (click)="switchTab('recibidos')"
-      >
+        (click)="switchTab('recibidos')">
         Recibidos
       </button>
       <button
         class="tab"
         [ngClass]="{ active: currentTab === 'dados' }"
-        (click)="switchTab('dados')"
-      >
+        (click)="switchTab('dados')">
         Dados
-      </button>
-      <button
-        class="tab"
-        [ngClass]="{ active: currentTab === 'pendientes' }"
-        (click)="switchTab('pendientes')"
-      >
-        Pendientes
       </button>
     </div>
 
@@ -59,8 +50,7 @@
             <div class="feedback-from">
               <div
                 class="from-avatar"
-                [ngStyle]="{ 'background-color': fb.avatarColor }"
-              >
+                [ngStyle]="{ 'background-color': fb.avatarColor }">
                 {{ fb.iniciales }}
               </div>
               <div class="from-info">
@@ -78,8 +68,7 @@
                   'type-positive': fb.tipo === 'Reconocimiento',
                   'type-constructive': fb.tipo === 'Constructivo',
                   'type-recognition': fb.tipo === 'Reconocimiento'
-                }"
-              >
+                }">
                 {{ fb.tipo }}
               </div>
             </div>
@@ -94,8 +83,7 @@
               <ng-container *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
                 <span
                   class="star"
-                  [ngClass]="{ empty: i + 1 > fb.calificacion }"
-                >
+                  [ngClass]="{ empty: i + 1 > fb.calificacion }">
                   ★
                 </span>
               </ng-container>
@@ -103,12 +91,23 @@
             <span>({{ fb.calificacion }}.0)</span>
           </div>
           <div class="feedback-actions">
-            <button class="btn btn-primary" (click)="respondFeedback(fb.id)">
+            <button
+              *ngIf="!fb.mostrarRespuesta"
+              class="btn btn-primary"
+              (click)="respondFeedback(fb.id)">
               Responder
             </button>
-            <button class="btn btn-secondary" (click)="saveFeedback(fb.id)">
-              Guardar
-            </button>
+            <div *ngIf="fb.mostrarRespuesta" class="respuesta-box full">
+              <textarea [(ngModel)]="fb.respuesta"
+                placeholder="Escribe tu respuesta..."></textarea>
+              <div class="feedback-actions right">
+                <button class="btn btn-primary"
+                  (click)="guardarRespuesta(fb.id)">Enviar</button>
+                <button class="btn btn-secondary"
+                  (click)="fb.mostrarRespuesta = false">Cancelar</button>
+              </div>
+            </div>
+
           </div>
         </div>
       </ng-container>
@@ -119,8 +118,7 @@
             <div class="feedback-from">
               <div
                 class="from-avatar"
-                [ngStyle]="{ 'background-color': fb.avatarColor }"
-              >
+                [ngStyle]="{ 'background-color': fb.avatarColor }">
                 {{ fb.iniciales }}
               </div>
               <div class="from-info">
@@ -138,8 +136,7 @@
                   'type-positive': fb.tipo === 'Reconocimiento',
                   'type-constructive': fb.tipo === 'Constructivo',
                   'type-recognition': fb.tipo === 'Reconocimiento'
-                }"
-              >
+                }">
                 {{ fb.tipo }}
               </div>
             </div>
@@ -154,8 +151,7 @@
               <ng-container *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
                 <span
                   class="star"
-                  [ngClass]="{ empty: i + 1 > fb.calificacion }"
-                >
+                  [ngClass]="{ empty: i + 1 > fb.calificacion }">
                   ★
                 </span>
               </ng-container>
@@ -166,73 +162,51 @@
             <button class="btn btn-primary" (click)="createActionPlan(fb.id)">
               Plan de Acción
             </button>
-            <button class="btn btn-secondary" (click)="saveFeedback(fb.id)">
-              Guardar
-            </button>
           </div>
         </div>
       </ng-container>
 
-      <ng-container *ngIf="currentTab === 'pendientes'">
-        <div class="feedback-card" *ngFor="let fb of pendientes">
-          <div class="feedback-header">
-            <div class="feedback-from">
-              <div
-                class="from-avatar"
-                [ngStyle]="{ 'background-color': fb.avatarColor }"
-              >
-                {{ fb.iniciales }}
-              </div>
-              <div class="from-info">
-                <h3>{{ fb.nombre }}</h3>
-                <p>{{ fb.puesto }}</p>
-              </div>
-            </div>
-            <div class="header-right">
-              <div class="feedback-date">
-                {{ fb.fecha | date : "dd MMM yyyy" }}
-              </div>
-              <div
-                class="feedback-type"
-                [ngClass]="{
-                  'type-positive': fb.tipo === 'Reconocimiento',
-                  'type-constructive': fb.tipo === 'Constructivo',
-                  'type-recognition': fb.tipo === 'Reconocimiento'
-                }"
-              >
-                {{ fb.tipo }}
-              </div>
-            </div>
-          </div>
-          <div class="feedback-content">
-            <div class="feedback-title">{{ fb.titulo }}</div>
-            <div class="feedback-text">{{ fb.texto }}</div>
-          </div>
-          <div class="feedback-rating">
-            <span>Calificación:</span>
-            <div class="stars">
-              <ng-container *ngFor="let star of [1, 2, 3, 4, 5]; let i = index">
-                <span
-                  class="star"
-                  [ngClass]="{ empty: i + 1 > fb.calificacion }"
-                >
-                  ★
-                </span>
-              </ng-container>
-            </div>
-            <span>({{ fb.calificacion }}.0)</span>
-          </div>
-          <div class="feedback-actions">
-            <button class="btn btn-primary" (click)="thankFeedback(fb.id)">
-              Agradecer
-            </button>
-            <button class="btn btn-secondary" (click)="shareFeedback(fb.id)">
-              Compartir
-            </button>
-          </div>
-        </div>
-      </ng-container>
     </div>
   </main>
 </div>
 <div class="version-info">horizons 1.0.0</div>
+
+<div class="modal" *ngIf="showModal">
+  <div class="modal-content">
+    <h2>Dar Feedback</h2>
+
+    <label>Correo del destinatario:</label>
+    <input type="email" [(ngModel)]="nuevoFeedback.correo"
+      placeholder="ejemplo@correo.com" />
+
+    <label>Título:</label>
+    <input type="text" [(ngModel)]="nuevoFeedback.titulo"
+      placeholder="Ej. Excelente liderazgo" />
+
+    <label>Mensaje:</label>
+    <textarea rows="4" [(ngModel)]="nuevoFeedback.texto"
+      placeholder="Escribe tu mensaje..."></textarea>
+
+    <label>Calificación:</label>
+    <div class="stars">
+      <ng-container *ngFor="let star of [1,2,3,4,5]">
+        <span
+          class="star"
+          [class.empty]="star > nuevoFeedback.calificacion"
+          (click)="nuevoFeedback.calificacion = star">★</span>
+      </ng-container>
+      <span>({{ nuevoFeedback.calificacion }}.0)</span>
+    </div>
+
+    <label>Tipo de Feedback:</label>
+    <select [(ngModel)]="nuevoFeedback.tipo">
+      <option value="Reconocimiento">Reconocimiento</option>
+      <option value="Constructivo">Constructivo</option>
+    </select>
+
+    <div class="modal-actions">
+      <button class="btn btn-primary" (click)="enviarFeedback()">Enviar</button>
+      <button class="btn btn-secondary" (click)="closeModal()">Cancelar</button>
+    </div>
+  </div>
+</div>

@@ -1,6 +1,6 @@
-// feedbacks.component.ts
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from '../header/header.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 
@@ -15,6 +15,8 @@ interface Feedback {
     titulo: string;
     texto: string;
     calificacion: number;
+    mostrarRespuesta?: boolean;
+    respuesta?: string;
 }
 
 interface Stats {
@@ -27,7 +29,7 @@ interface Stats {
 @Component({
     selector: 'app-feedbacks',
     standalone: true,
-    imports: [CommonModule, HeaderComponent, SidebarComponent],
+    imports: [CommonModule, HeaderComponent, SidebarComponent, FormsModule],
     templateUrl: './feedbacks.component.html',
     styleUrls: ['./feedbacks.component.css']
 })
@@ -125,12 +127,19 @@ export class FeedbacksComponent {
         this.currentTab = tab;
     }
 
-    newFeedback() {
-        alert('Crear nuevo feedback - Funcionalidad en desarrollo');
+    respondFeedback(id: number) {
+        const feedback = this.recibidos.find(fb => fb.id === id);
+        if (feedback) {
+            feedback.mostrarRespuesta = !feedback.mostrarRespuesta;
+        }
     }
 
-    respondFeedback(id: number) {
-        alert(`Respondiendo al feedback ${id}`);
+    guardarRespuesta(id: number) {
+        const fb = this.recibidos.find(f => f.id === id);
+        if (fb) {
+            console.log(`Respuesta al feedback ${id}: ${fb.respuesta}`);
+            fb.mostrarRespuesta = false;
+        }
     }
 
     saveFeedback(id: number) {
@@ -147,5 +156,35 @@ export class FeedbacksComponent {
 
     shareFeedback(id: number) {
         alert(`Compartiendo feedback ${id}`);
+    }
+
+    showModal = false;
+
+    nuevoFeedback = {
+        correo: '',
+        titulo: '',
+        texto: '',
+        calificacion: 5,
+        tipo: 'Reconocimiento'
+    };
+
+    newFeedback() {
+        this.showModal = true;
+    }
+
+    closeModal() {
+        this.showModal = false;
+        this.nuevoFeedback = {
+            correo: '',
+            titulo: '',
+            texto: '',
+            calificacion: 5,
+            tipo: 'Reconocimiento'
+        };
+    }
+
+    enviarFeedback() {
+        console.log('Nuevo feedback enviado:', this.nuevoFeedback);
+        this.closeModal();
     }
 }

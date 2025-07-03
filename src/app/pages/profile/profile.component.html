@@ -30,7 +30,7 @@
                     <p class="info-value">No disponible</p>
                 </div>
             </div>
-            <button class="edit-btn">Editar</button>
+            <button class="edit-btn" (click)="openModal('personal')">Editar</button>
         </div>
 
         <div class="content-card">
@@ -45,7 +45,40 @@
                     <p class="info-value">javiermedina&#64;gmail.com</p>
                 </div>
             </div>
-            <button class="edit-btn">Editar</button>
+            <button class="edit-btn" (click)="openModal('contacto')">Editar</button>
         </div>
     </main>
+</div>
+
+<div class="modal" *ngIf="showModalPersonal">
+    <div class="modal-content">
+        <h3>Editar Información Personal</h3>
+        <label>Nombre:</label>
+        <input type="text" [(ngModel)]="formPersonal.nombre" />
+        <label>RFC:</label>
+        <input type="text" [(ngModel)]="formPersonal.rfc" />
+        <label>CURP:</label>
+        <input type="text" [(ngModel)]="formPersonal.curp" />
+        <label>Fecha de Nacimiento:</label>
+        <input type="date" [(ngModel)]="formPersonal.fechaNacimiento" />
+        <div class="modal-actions">
+            <button (click)="guardarPersonal()">Guardar</button>
+            <button class="cancel-btn" (click)="closeModal()">Cancelar</button>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL CONTACTO -->
+<div class="modal" *ngIf="showModalContacto">
+    <div class="modal-content">
+        <h3>Editar Contacto</h3>
+        <label>Teléfono:</label>
+        <input type="text" [(ngModel)]="formContacto.telefono" />
+        <label>Correo:</label>
+        <input type="email" [(ngModel)]="formContacto.correo" />
+        <div class="modal-actions">
+            <button (click)="guardarContacto()">Guardar</button>
+            <button class="cancel-btn" (click)="closeModal()">Cancelar</button>
+        </div>
+    </div>
 </div>

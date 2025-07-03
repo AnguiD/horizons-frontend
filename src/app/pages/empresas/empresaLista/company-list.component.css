@@ -32,7 +32,7 @@
 
 .list-box h2 {
   margin-bottom: 1rem;
-  color: #333;
+  color: #ee7202;
   text-align: center;
 }
 
@@ -40,6 +40,7 @@
   width: 100%;
   border-collapse: collapse;
 }
+
 
 .company-table th,
 .company-table td {
@@ -61,7 +62,7 @@
   font-size: 0.9rem;
 }
 
-.view-btn { background-color: #6c757d; color: white; }
+.view-btn { background-color: #ee7202; color: white; }
 .edit-btn { background-color: #007bff; color: white; }
 .delete-btn { background-color: #dc3545; color: white; }
 

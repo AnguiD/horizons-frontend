@@ -10,24 +10,28 @@
       <div class="form-row">
         <div class="form-group">
           <label for="correo">Correo</label>
-          <input id="correo" name="correo" type="email" [(ngModel)]="user.correo" placeholder="usuario@empresa.com"
+          <input id="correo" name="correo" type="email"
+            [(ngModel)]="user.correo" placeholder="usuario@empresa.com"
             required />
         </div>
 
         <div class="form-group">
           <label for="nombre">Nombre</label>
-          <input id="nombre" name="nombre" type="text" [(ngModel)]="user.nombre" placeholder="Nombre(s)" required />
+          <input id="nombre" name="nombre" type="text" [(ngModel)]="user.nombre"
+            placeholder="Nombre(s)" required />
         </div>
 
         <div class="form-group">
           <label for="apPaterno">Apellido Paterno</label>
-          <input id="apPaterno" name="apPaterno" type="text" [(ngModel)]="user.apPaterno" placeholder="Apellido Paterno"
+          <input id="apPaterno" name="apPaterno" type="text"
+            [(ngModel)]="user.apPaterno" placeholder="Apellido Paterno"
             required />
         </div>
 
         <div class="form-group">
           <label for="apMaterno">Apellido Materno</label>
-          <input id="apMaterno" name="apMaterno" type="text" [(ngModel)]="user.apMaterno"
+          <input id="apMaterno" name="apMaterno" type="text"
+            [(ngModel)]="user.apMaterno"
             placeholder="Apellido Materno" />
         </div>
       </div>
@@ -36,27 +40,30 @@
         <div class="form-group">
           <label for="rol">Rol</label>
           <select id="rol" name="rol" [(ngModel)]="user.id_rol" required>
-            <option value="" disabled selected>Seleccione un rol</option>
-            <option *ngFor="let rol of roles" [value]="rol.id">{{ rol.nombre }}</option>
+            <option value disabled selected>Seleccione un rol</option>
+            <option *ngFor="let rol of roles" [value]="rol.id">{{ rol.nombre
+              }}</option>
           </select>
         </div>
 
-
         <div class="form-group">
           <label for="salarioBase">Salario Base</label>
-          <input id="salarioBase" name="salarioBase" type="number" step="0.01" [(ngModel)]="user.salarioBase"
+          <input id="salarioBase" name="salarioBase" type="number" step="0.01"
+            [(ngModel)]="user.salarioBase"
             placeholder="15000.50" required />
         </div>
 
         <div class="form-group">
           <label for="ultimoPorcentajeAumento">% Último Aumento</label>
-          <input id="ultimoPorcentajeAumento" name="ultimoPorcentajeAumento" type="number" step="0.1"
+          <input id="ultimoPorcentajeAumento" name="ultimoPorcentajeAumento"
+            type="number" step="0.1"
             [(ngModel)]="user.ultimoPorcentajeAumento" placeholder="10.5" />
         </div>
 
         <div class="form-group">
           <label for="fechaInicioTrabajo">Inicio en la empresa</label>
-          <input id="fechaInicioTrabajo" name="fechaInicioTrabajo" type="date" [(ngModel)]="user.fechaInicioTrabajo"
+          <input id="fechaInicioTrabajo" name="fechaInicioTrabajo" type="date"
+            [(ngModel)]="user.fechaInicioTrabajo"
             required />
         </div>
       </div>
@@ -64,20 +71,29 @@
       <div class="form-row">
         <div class="form-group">
           <label for="numeroSerie">No. de Serie del Equipo</label>
-          <input id="numeroSerie" name="numeroSerie" type="text" [(ngModel)]="user.numeroSerie"
+          <input id="numeroSerie" name="numeroSerie" type="text"
+            [(ngModel)]="user.numeroSerie"
             placeholder="NS-2025-001" />
         </div>
 
         <div class="form-group">
           <label for="marca">Marca del Equipo</label>
-          <input id="marca" name="marca" type="text" [(ngModel)]="user.marca" placeholder="Dell, Lenovo, etc." />
+          <input id="marca" name="marca" type="text" [(ngModel)]="user.marca"
+            placeholder="Dell, Lenovo, etc." />
         </div>
 
         <div class="form-group">
           <label for="especificaciones">Especificaciones</label>
-          <textarea id="especificaciones" name="especificaciones" [(ngModel)]="user.especificaciones"
+          <textarea id="especificaciones" name="especificaciones"
+            [(ngModel)]="user.especificaciones"
             placeholder="Ej. Intel Core i7, 16GB RAM, 512GB SSD"></textarea>
         </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn submit-btn">Guardar</button>
+        <button type="button" class="btn btn-secondary"
+          (click)="cancelar()">Cancelar</button>
       </div>
 
     </form>

@@ -1,7 +1,7 @@
-// invitar-usuario.component.ts
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router'; // 👈 Importa Router
 import { HeaderComponent } from '../header/header.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 
@@ -17,7 +17,6 @@ interface UsuarioInvitado {
     numeroSerie: string;
     marca: string;
     especificaciones: string;
-
     rfc: string;
     curp: string;
     fechaNacimiento: string;
@@ -31,7 +30,6 @@ interface UsuarioInvitado {
     recursos: string;
 }
 
-
 @Component({
     selector: 'app-invitar-usuario',
     standalone: true,
@@ -40,6 +38,8 @@ interface UsuarioInvitado {
     styleUrls: ['./usuariosInvitacion.component.css']
 })
 export class UsuariosInvitacionComponent {
+
+    constructor(private router: Router) { } // 👈 Inyecta Router
 
     roles = [
         { id: 1, nombre: 'Super Admin' },
@@ -60,7 +60,6 @@ export class UsuariosInvitacionComponent {
         numeroSerie: '',
         marca: '',
         especificaciones: '',
-
         rfc: '',
         curp: '',
         fechaNacimiento: '',
@@ -74,8 +73,14 @@ export class UsuariosInvitacionComponent {
         recursos: ''
     };
 
-
     onSubmit() {
         alert('Datos enviados:\n' + JSON.stringify(this.user, null, 2));
+
+        this.router.navigate(['/usuarios']);
+    }
+
+    cancelar() {
+        this.router.navigate(['/usuarios']);
     }
 }
+

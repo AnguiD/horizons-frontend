@@ -94,36 +94,6 @@
             </div>
           </div>
         </div>
-
-        <div class="insurance-actions">
-          <button class="btn btn-primary" (click)="viewPolicy(seguro.id)">
-            Ver Póliza
-          </button>
-          <button
-            *ngIf="seguro.tipo === 'Médico'"
-            class="btn btn-secondary"
-            (click)="downloadCard(seguro.id)"
-          >
-            Descargar Tarjeta
-          </button>
-          <button
-            *ngIf="seguro.tipo === 'Vida'"
-            class="btn btn-secondary"
-            (click)="manageBeneficiaries(seguro.id)"
-          >
-            Gestionar Beneficiarios
-          </button>
-          <button
-            class="btn btn-outline"
-            (click)="secondaryAction(seguro.id, seguro.tipo)"
-          >
-            {{
-              seguro.tipo === "Médico"
-                ? "Red de Proveedores"
-                : "Solicitar Siniestro"
-            }}
-          </button>
-        </div>
       </div>
     </div>
   </main>

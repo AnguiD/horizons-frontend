@@ -87,39 +87,63 @@
 
 .modal-backdrop {
     position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.28);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
     display: flex;
-    align-items: center;
     justify-content: center;
-    z-index: 1001;
+    align-items: center;
+    z-index: 999;
 }
+
 .modal-pdf {
-    background: white;
-    border-radius: 14px;
-    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
-    width: 80vw;
-    max-width: 760px;
-    max-height: 90vh;
+    background: #fff;
+    border-radius: 12px;
+    width: 90vw;
+    /* más ancho */
+    height: 85vh;
+    /* más alto */
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease-in-out;
 }
+
 .modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 1.5rem 0.6rem 1.5rem;
-}
-.modal-title {
-    font-size: 1.15rem;
+    padding: 1rem;
+    background: #ee7202;
+    color: white;
+    font-size: 1.25rem;
     font-weight: bold;
 }
+
+.modal-body {
+    flex: 1;
+    padding: 0;
+}
+
 .modal-close {
-    background: none;
+    background: transparent;
     border: none;
-    font-size: 1.3rem;
+    color: white;
+    font-size: 1.5rem;
     cursor: pointer;
 }
-.modal-body {
-    padding: 0 1.5rem 1.5rem 1.5rem;
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
