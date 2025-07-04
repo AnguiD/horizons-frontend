@@ -29,7 +29,13 @@
     font-weight: 700;
 }
 
-.invite-btn {
+.header-actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.invite-btn,
+.export-btn {
     background: #ee7202;
     color: white;
     padding: 0.6rem 1.2rem;
@@ -40,7 +46,8 @@
     transition: background-color 0.2s ease;
 }
 
-.invite-btn:hover {
+.invite-btn:hover,
+.export-btn:hover {
     background: #ee7202;
 }
 
@@ -86,6 +93,7 @@
     font-size: 1rem;
     color: #6b7280;
     transition: color 0.2s ease;
+    padding-right: 1rem;
 }
 
 .btn-icon:hover {
