@@ -1,0 +1,312 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    display: flex;
+    min-height: calc(100vh - 80px);
+}
+
+.main-content {
+    flex: 1;
+    padding: 2rem;
+    background: #f9fafb;
+}
+
+.page-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #ee7202;
+}
+
+.card-nomina {
+    background: white;
+    padding: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.btn-preview {
+    padding: 0.5rem 1rem;
+    background: #ee7202;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.btn-preview:hover {
+    background: #d46201;
+}
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.modal-pdf {
+    background: #fff;
+    border-radius: 12px;
+    width: 90vw;
+    /* más ancho */
+    height: 85vh;
+    /* más alto */
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    background: #ee7202;
+    color: white;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.modal-body {
+    flex: 1;
+    padding: 0;
+}
+
+.modal-close {
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.ayuda-card {
+    margin-top: 2rem;
+}
+
+.bienvenida-ayuda {
+    margin-bottom: 1.2rem;
+    color: #606060;
+}
+
+.divider {
+    border: none;
+    border-top: 1.5px solid #f2f2f2;
+    margin: 1.5rem 0;
+}
+
+.ayuda-section {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.btn-chat {
+    background: #3b82f6;
+    color: white;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-right: 1rem;
+    font-size: 1rem;
+    transition: background 0.2s;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-chat:hover {
+    background: #2563eb;
+}
+
+.ayuda-horario {
+    display: block;
+    margin-top: 0.3rem;
+    color: #6b7280;
+    font-size: 0.95rem;
+}
+
+.contactos-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.contactos-table th,
+.contactos-table td {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+    font-size: 0.98rem;
+}
+
+.contactos-table th {
+    color: #ee7202;
+    font-weight: 600;
+    background: #f9fafb;
+}
+
+.contactos-table td a {
+    color: #3b82f6;
+    text-decoration: none;
+}
+
+.contactos-table td a:hover {
+    text-decoration: underline;
+}
+
+.ayuda-card {
+    margin-top: 2rem;
+    padding: 2rem 2.5rem;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 14px rgba(60, 60, 60, 0.06);
+}
+
+.mb-2 { margin-bottom: 1.1rem !important; }
+.mt-3 { margin-top: 2.2rem !important; }
+
+.ayuda-block {
+    margin-bottom: 2.2rem;
+}
+
+.ayuda-h3 {
+    font-size: 1.12rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    margin-top: 0;
+}
+
+.botones-ayuda {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 0.7rem;
+    flex-wrap: wrap;
+}
+
+.btn-preview,
+.btn-chat {
+    min-width: 175px;
+    font-size: 1rem;
+    margin-right: 0;
+    box-shadow: 0 1px 6px rgba(238,114,2,0.05);
+    letter-spacing: 0.01em;
+}
+
+.btn-preview {
+    background: #ee7202;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 0.65rem 1.3rem;
+    transition: background 0.2s;
+}
+
+.btn-preview:hover {
+    background: #d46201;
+}
+
+.btn-chat {
+    background: #2563eb;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 0.65rem 1.3rem;
+    display: inline-block;
+    text-align: center;
+    transition: background 0.2s;
+    text-decoration: none;
+}
+
+.btn-chat:hover {
+    background: #174fc6;
+}
+
+.ayuda-horario {
+    display: block;
+    margin-top: 0.6rem;
+    color: #6b7280;
+    font-size: 0.98rem;
+    margin-bottom: 1rem;
+}
+
+.tabla-scroll {
+    overflow-x: auto;
+}
+
+.contactos-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background: #fafbfc;
+    border-radius: 10px;
+    overflow: hidden;
+    min-width: 540px;
+}
+
+.contactos-table th,
+.contactos-table td {
+    padding: 0.72rem 1rem;
+    text-align: left;
+    border-bottom: 1px solid #ececec;
+    font-size: 1rem;
+    vertical-align: middle;
+}
+
+.contactos-table th {
+    color: #ee7202;
+    font-weight: 700;
+    background: #f6f6fa;
+    border-top: none;
+}
+
+.contactos-table td a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.contactos-table td a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+    .ayuda-card { padding: 1rem 0.6rem; }
+    .contactos-table { font-size: 0.94rem; min-width: 350px; }
+    .main-content { padding: 1rem; }
+}
+
+@media (max-width: 600px) {
+    .ayuda-card { padding: 0.7rem 0.2rem; }
+    .contactos-table th, .contactos-table td { padding: 0.4rem 0.5rem; }
+    .btn-preview, .btn-chat { font-size: 0.95rem; padding: 0.55rem 0.7rem; }
+}

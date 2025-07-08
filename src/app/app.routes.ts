@@ -1,4 +1,4 @@
-import { RouterModule, Routes } from '@angular/router';
+import { Routes } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ContactComponent } from './pages/contact/contact.component';
@@ -23,8 +23,8 @@ import { CompanyListComponent } from './pages/empresas/empresaLista/company-list
 import { CompanyCreateComponent } from './pages/empresas/agregarEmpresa/company-create.component';
 import { CompanyEditComponent } from './pages/empresas/editarEmpresa/company-edit.component';
 import { CompanyDetailComponent } from './pages/empresas/detallesEmpresa/company-detail.component';
-import { NgModule } from '@angular/core';
 import { SoporteTecnicoComponent } from './pages/soporte-tecnico/soporte-tecnico.component';
+import { AyudaComponent } from './pages/ayuda/ayuda.component';
 
 
 export const routes: Routes = [
@@ -55,6 +55,7 @@ export const routes: Routes = [
   { path: 'empresas/:id', component: CompanyDetailComponent },
   { path: 'administrador/solicitudes', component: SolicitudesRecibidasComponent },
   { path: 'administrador/soporte', component: SoporteTecnicoComponent },
+  { path: 'ayuda', component: AyudaComponent}
 
 ];
 

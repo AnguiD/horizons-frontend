@@ -1,0 +1,89 @@
+<app-header></app-header>
+<div class="container">
+    <app-sidebar></app-sidebar>
+    <main class="main-content">
+        <div class="card-nomina ayuda-card">
+
+            <h1 class="page-title mb-2">Centro de Ayuda</h1>
+            <p class="bienvenida-ayuda mb-2">Bienvenido al Centro de Ayuda. Aquí encontrarás recursos útiles para resolver tus dudas y contactar con nuestro equipo Badak.</p>
+            <hr class="divider">
+
+            <!-- Manual de Usuario -->
+            <section class="ayuda-block">
+                <h3 class="ayuda-h3">¿Tienes dudas con el uso de la plataforma?</h3>
+                <p>Consulta nuestro manual de usuario para obtener ayuda detallada sobre las funcionalidades de Horizons.</p>
+                <div class="botones-ayuda">
+                    <button class="btn-preview" (click)="abrirModal()">Ver Manual de Usuario</button>
+                </div>
+            </section>
+
+            <!-- Modal PDF -->
+            <div class="modal-backdrop" *ngIf="modalAbierto">
+                <div class="modal-pdf">
+                    <div class="modal-header">
+                        <span class="modal-title">Manual de Usuario - Vista Previa</span>
+                        <button class="modal-close" (click)="cerrarModal()">✕</button>
+                    </div>
+                    <div class="modal-body">
+                        <iframe *ngIf="pdfPreviewUrl" [src]="pdfPreviewUrl | safeUrl" width="100%" height="100%" style="border:0;"></iframe>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Chat de soporte -->
+            <section class="ayuda-block mt-3">
+                <h3 class="ayuda-h3">¿Tienes algún problema con tu equipo proporcionado por la empresa?</h3>
+                <div class="botones-ayuda">
+                    <button class="btn-chat" (click)="irASoporte()">
+                        Repórtalo con Soporte Técnico
+                    </button>
+                </div>
+                <span class="ayuda-horario">Horario: Lunes a Viernes de 9am a 6pm</span>
+            </section>
+            <hr class="divider">
+
+            <!-- Contactos -->
+            <section class="ayuda-block">
+                <h2 class="ayuda-h3">Contactos de Áreas</h2>
+                <div class="tabla-scroll">
+                    <table class="contactos-table">
+                        <thead>
+                            <tr>
+                                <th>Área</th>
+                                <th>Responsable</th>
+                                <th>Email</th>
+                                <th>Teléfono</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>DO (Desarrollo Organizacional)</td>
+                                <td>María Pérez</td>
+                                <td><a href="mailto:do&#64;badak.mx">do&#64;badak.mx</a></td>
+                                <td>555-123-4567</td>
+                            </tr>
+                            <tr>
+                                <td>RH (Recursos Humanos)</td>
+                                <td>Carlos Gómez</td>
+                                <td><a href="mailto:rh&#64;badak.mx">rh&#64;badak.mx</a></td>
+                                <td>555-234-5678</td>
+                            </tr>
+                            <tr>
+                                <td>ST (Soporte Técnico)</td>
+                                <td>Ana Morales</td>
+                                <td><a href="mailto:soporte&#64;badak.mx">soporte&#64;badak.mx</a></td>
+                                <td>555-345-6789</td>
+                            </tr>
+                            <tr>
+                                <td>Finanzas</td>
+                                <td>Pedro López</td>
+                                <td><a href="mailto:soporte&#64;badak.mx">soporte&#64;badak.mx</a></td>
+                                <td>555-345-6781</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </div>
+    </main>
+</div>
