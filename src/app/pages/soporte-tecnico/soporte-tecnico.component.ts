@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from '../header/header.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { TicketChatComponent } from '../ticket-chat/ticket-chat.component';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
 
 interface TicketComentario {
   autor: string;
@@ -74,7 +76,7 @@ export class SoporteTecnicoComponent {
     }
   ];
 
-    get ticketsFiltrados() {
+  get ticketsFiltrados() {
     return this.tickets.filter(t =>
       (this.filtroEstado === '' || t.estado === this.filtroEstado) &&
       (
@@ -112,5 +114,61 @@ export class SoporteTecnicoComponent {
       console.log(`Ticket #${this.ticketSeleccionado.id} asignado a ${this.tecnicoAsignado} tiene ${tecnico?.ticketsAsignados} tickets asignados.`);
       this.cerrarModalAsignar();
     }
+  }
+
+  exportarSolicitudes(): void {
+    const doc = new jsPDF();
+    const title = 'Listado de Tickets de Soporte Técnico Recibidas';
+
+    doc.setFontSize(18);
+    doc.setTextColor(238, 114, 2);
+    doc.setFont('helvetica', 'bold');
+    doc.text(title, 14, 15);
+    doc.setTextColor(0, 0, 0);
+    doc.setFont('helvetica', 'normal');
+
+    const headers = [['ID', 'Asunto', 'Descripción', 'Solicitante', 'Rol', 'Estatus', 'Fecha de Creación', 'Técnico Asignado']];
+
+    const data = this.tickets.map(ticket => [
+      ticket.id,
+      ticket.asunto,
+      ticket.descripcion,
+      ticket.usuario.nombre,
+      ticket.usuario.rol,
+      ticket.estado,
+      ticket.fechaCreacion ? this.formatFecha(ticket.fechaCreacion) : 'N/A',
+      ticket.tecnico ? ticket.tecnico.nombre : 'N/A'
+    ]);
+
+    autoTable(doc, {
+      head: headers,
+      body: data,
+      startY: 25,
+      styles: {
+        cellPadding: 3,
+        fontSize: 9,
+      },
+      headStyles: {
+        fillColor: [238, 114, 2],
+        textColor: [255, 255, 255],
+      },
+    });
+
+    // Pie de página
+    doc.setFontSize(10);
+    doc.text('Horizons 1.0.0 - Gestión de Solicitudes', 14, doc.internal.pageSize.height - 10);
+
+    // Guardar el PDF
+    doc.save('solicitudes-soporte-tecnico-recibidas.pdf');
+  }
+
+  private formatFecha(fecha: string | undefined): string {
+    if (!fecha) return 'N/A';
+    const date = new Date(fecha);
+    return date.toLocaleDateString('es-MX', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    });
   }
 }
