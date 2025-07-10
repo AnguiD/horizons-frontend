@@ -72,6 +72,13 @@
     text-align: left;
 }
 
+.ticket-table th {
+    background: #f3f4f6;
+    font-weight: 600;
+    font-size: 1rem;
+    text-align: center;
+}
+
 .ticket-table th:nth-child(2),
 .ticket-table td:nth-child(2) {
     width: 20%;
@@ -126,4 +133,190 @@
 
 .coment-btn:hover {
     background: #c7d2fe;
+}
+
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.18);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+.modal-asignar {
+    background: #fff;
+    border-radius: 14px;
+    min-width: 370px;
+    max-width: 98vw;
+    padding: 1.7rem 1.5rem;
+    box-shadow: 0 8px 28px #0001;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    color: #ee7202;
+    font-size: 1.15rem;
+}
+
+.modal-close {
+    border: none;
+    background: transparent;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+.modal-body h4 {
+    margin-bottom: 0.2rem;
+    color: #3b82f6;
+}
+
+.ticket-datos {
+    margin-bottom: 1rem;
+    padding-left: 1.1rem;
+}
+
+.select-tecnico {
+    width: 100%;
+    padding: 0.4rem 0.7rem;
+    border-radius: 7px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+    margin-bottom: 0.7rem;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.btn-cancelar {
+    background: #e5e7eb;
+    color: #374151;
+    border: none;
+    border-radius: 7px;
+    padding: 0.5rem 1.2rem;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.btn-asignar {
+    background: #10b981;
+    color: #fff;
+    border: none;
+    border-radius: 7px;
+    padding: 0.5rem 1.2rem;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background .15s;
+    margin-left: 1rem;
+}
+
+.btn-asignar:disabled {
+    background: #c6f6d5;
+    color: #ccc;
+    cursor: not-allowed;
+}
+
+.filtros-soporte {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+    align-items: center;
+}
+
+.radio-group {
+    display: flex;
+    gap: 0.7rem;
+    align-items: center;
+}
+
+.filtros-soporte {
+    display: flex;
+    gap: 1.2rem;
+    align-items: center;
+    background: #fff;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(80, 86, 97, 0.07);
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.search {
+    min-width: 280px;
+    max-width: 340px;
+    font-size: 1rem;
+    padding: 0.55rem 1rem;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 8px;
+    transition: border-color 0.2s;
+}
+
+.search:focus {
+    border-color: #ee7202;
+    outline: none;
+}
+
+.radio-group {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    font-size: 1rem;
+    color: #444;
+}
+
+.radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 0.38rem;
+    font-weight: 500;
+}
+
+.radio-group input[type="radio"] {
+    accent-color: #ee7202;
+    width: 18px;
+    height: 18px;
+}
+
+.estado-filter {
+    min-width: 180px;
+    padding: 0.45rem 0.7rem;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 1rem;
+    background: #f9fafb;
+    color: #222;
+    font-weight: 500;
+    transition: border-color 0.2s;
+}
+
+.estado-filter:focus {
+    border-color: #ee7202;
+    outline: none;
+}
+
+@media (max-width: 900px) {
+    .filtros-soporte {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+    }
+    .search, .estado-filter {
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+    }
+    .radio-group {
+        gap: 1rem;
+    }
 }

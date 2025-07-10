@@ -1,4 +1,9 @@
 <div class="comentarios-section">
+<h3>Chat del Ticket #{{ ticket.id }}</h3>
+<p class="ticket-info">
+    <strong>Fecha de creación:</strong> {{ ticket.fechaCreacion | date:'short' }}<br>
+    <strong>Tecnico que atiende:</strong> {{ ticket.tecnico?.nombre || 'No asignado' }}<br>
+</p>
     <h4>Comentarios</h4>
     <div *ngIf="!ticket.comentarios?.length" class="comentario-vacio">No hay comentarios.</div>
     <div *ngFor="let comentario of ticket.comentarios"
