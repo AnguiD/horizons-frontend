@@ -124,27 +124,27 @@ export class SolicitudesComponent {
   }
 
   deleteRequest(id: number): void {
-    const confirmed = window.confirm(`¿Estás seguro de que quieres eliminar la solicitud ${id}?`);
+    const confirmed = window.confirm(`¿Estás seguro de que quieres cancelar la solicitud ${id}?`);
     if (confirmed) {
-      alert(`Solicitud ${id} eliminada`);
-      this.solicitudes = this.solicitudes.filter(solicitud => solicitud.id !== id);
-      if (this.solicitudSeleccionada && this.solicitudSeleccionada.id === id
-      ) {
-        this.solicitudSeleccionada = null;
-      }
-      if (this.chatAbiertoIndex === id) {
-        this.chatAbiertoIndex = null;
-      }
-      if (this.solicitudEditar && this.solicitudEditar.id === id) {
+      const solicitud = this.solicitudes.find(s => s.id === id);
+      if (solicitud) {
+        solicitud.estado = 'Cancelada';
+        alert(`Solicitud ${id} cancelada`);
+        if (this.solicitudSeleccionada && this.solicitudSeleccionada.id === id) {
+          this.solicitudSeleccionada.estado = 'Cancelada';
+        }
+        if (this.solicitudEditar && this.solicitudEditar.id === id) {
+          this.solicitudEditar.estado = 'Cancelada';
+        }
         this.cerrarModalEditar();
+        this.cerrarModal();
+        this.chatAbierto = false;
+        this.modalEditarAbierto = false;
+        this.solicitudEditar = null;
+        this.solicitudSeleccionada = null;
+        this.modalAbierto = false;
+        console.log(`Solicitud con ID ${id} marcada como cancelada`);
       }
-      this.cerrarModal();
-      this.chatAbierto = false;
-      this.modalEditarAbierto = false;
-      this.solicitudEditar = null;
-      this.solicitudSeleccionada = null;
-      this.modalAbierto = false;
-      console.log(`Solicitud con ID ${id} eliminada`);
     }
   }
 
