@@ -23,8 +23,10 @@ import { TicketChatComponent } from '../ticket-chat/ticket-chat.component';
 export class SoporteComponent {
   modalAbierto = false;
   chatAbierto: number | null = null;
-
+  opcionBusqueda = 'asunto';
   busqueda = '';
+  filtroEstado = '';
+
   tickets = [
     { id: 1, asunto: 'Pantalla rota', descripcion: 'La laptop tiene la pantalla quebrada', estado: 'Pendiente', comentarios: [] },
     { id: 2, asunto: 'Error de red', descripcion: 'No hay conexión en mi oficina', estado: 'En proceso', comentarios: [
@@ -54,11 +56,16 @@ export class SoporteComponent {
   }
 
   get ticketsFiltrados() {
-    return this.tickets.filter(t =>
-      t.asunto.toLowerCase().includes(this.busqueda.toLowerCase()) ||
-      t.descripcion.toLowerCase().includes(this.busqueda.toLowerCase())
-    );
-  }
+  return this.tickets.filter(t =>
+    (this.filtroEstado === '' || t.estado === this.filtroEstado) &&
+    (
+      this.opcionBusqueda === 'asunto'
+        ? t.asunto.toLowerCase().includes(this.busqueda.toLowerCase())
+        : t.descripcion.toLowerCase().includes(this.busqueda.toLowerCase())
+    )
+  );
+}
+
 
   toggleChat(idx: number) {
     this.chatAbierto = this.chatAbierto === idx ? null : idx;
