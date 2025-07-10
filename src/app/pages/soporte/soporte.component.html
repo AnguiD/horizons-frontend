@@ -6,12 +6,38 @@
     <main class="main-content">
         <div class="page-header">
             <h1 class="page-title">Soporte Técnico</h1>
-            <button class="new-ticket-btn" (click)="abrirModal()">+ Nuevo Ticket</button>
+            <div class="acciones-header">
+                <button class="new-ticket-btn" (click)="abrirModal()">
+                    + Nuevo Ticket
+                </button>
+                <button class="export-btn" (click)="exportarSolicitudes()">
+                    Exportar Solicitudes
+                </button>
+            </div>
         </div>
 
         <div class="listado">
             <h2 class="section-title">Seguimiento de Tickets</h2>
-            <input type="text" class="search" [(ngModel)]="busqueda" placeholder="Buscar por asunto o descripción..." />
+            <div class="filtros-soporte">
+                <input type="text" class="search" [(ngModel)]="busqueda"
+                    [placeholder]="opcionBusqueda === 'asunto' ? 'Buscar por asunto...' : 'Buscar por descripción...'" />
+
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" [(ngModel)]="opcionBusqueda" value="asunto" /> Asunto
+                    </label>
+                    <label>
+                        <input type="radio" [(ngModel)]="opcionBusqueda" value="descripcion" /> Descripción
+                    </label>
+                </div>
+
+                <select class="estado-filter" [(ngModel)]="filtroEstado">
+                    <option value="">Todos los estados</option>
+                    <option value="Pendiente">Pendiente</option>
+                    <option value="En proceso">En proceso</option>
+                    <option value="Resuelto">Resuelto</option>
+                </select>
+            </div>
 
             <table class="ticket-table">
                 <thead>
@@ -44,11 +70,10 @@
                         </tr>
                         <tr *ngIf="chatAbierto === idx" class="chat-row">
                             <td colspan="5" style="padding:0;">
-                                <app-ticket-chat
-                                [ticket]="ticket"
-                                [usuarioActual]="{ nombre: 'Juan Pérez', rol: 'Colaborador' }"
-                                (cerrar)="chatAbierto = null">
-                            </app-ticket-chat>
+                                <app-ticket-chat [ticket]="ticket"
+                                    [usuarioActual]="{ nombre: 'Juan Pérez', rol: 'Colaborador' }"
+                                    (cerrar)="chatAbierto = null">
+                                </app-ticket-chat>
                             </td>
                         </tr>
                     </ng-container>

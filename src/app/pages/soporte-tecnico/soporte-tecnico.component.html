@@ -4,11 +4,34 @@
     <main class="main-content">
         <div class="page-header">
             <h1 class="page-title">Soporte Técnico (Técnico/Owner)</h1>
+            <div class="acciones-header">
+                <button class="export-btn" (click)="exportarSolicitudes()">
+                    Exportar Solicitudes
+                </button>
+            </div>
         </div>
         <div class="listado">
             <h2 class="section-title">Tickets de Usuarios</h2>
-            <input type="text" class="search" [(ngModel)]="busqueda"
-                placeholder="Buscar por asunto, descripción o usuario..." />
+            <div class="filtros-soporte">
+                <input type="text" class="search" [(ngModel)]="busqueda"
+                    [placeholder]="opcionBusqueda === 'asunto' ? 'Buscar por asunto...' : 'Buscar por descripción...'" />
+
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" [(ngModel)]="opcionBusqueda" value="asunto" /> Asunto
+                    </label>
+                    <label>
+                        <input type="radio" [(ngModel)]="opcionBusqueda" value="descripcion" /> Descripción
+                    </label>
+                </div>
+
+                <select class="estado-filter" [(ngModel)]="filtroEstado">
+                    <option value="">Todos los estados</option>
+                    <option value="Pendiente">Pendiente</option>
+                    <option value="En proceso">En proceso</option>
+                    <option value="Resuelto">Resuelto</option>
+                </select>
+            </div>
             <table class="ticket-table">
                 <thead>
                     <tr>
@@ -18,7 +41,7 @@
                         <th>Solicitante</th>
                         <th>Rol</th>
                         <th>Estatus</th>
-                        <th>Comentarios</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -40,15 +63,16 @@
                                 <button (click)="toggleChat(idx)" class="coment-btn">
                                     {{ chatAbierto === idx ? 'Ocultar' : 'Ver' }}
                                 </button>
+                                <ng-container *ngIf="ticket.estado === 'Pendiente'">
+                                    <button class="btn-asignar" (click)="abrirAsignarModal(ticket)">Asignar</button>
+                                </ng-container>
                             </td>
                         </tr>
                         <tr *ngIf="chatAbierto === idx" class="chat-row">
                             <td colspan="7" style="padding:0;">
-                                <app-ticket-chat
-                                [ticket]="ticket"
-                                [usuarioActual]="{ nombre: 'Sofía Admin', rol: 'Soporte' }"
-                                (cerrar)="chatAbierto = null"
-                                ></app-ticket-chat>
+                                <app-ticket-chat [ticket]="ticket"
+                                    [usuarioActual]="{ nombre: 'Sofía Admin', rol: 'Soporte' }"
+                                    (cerrar)="chatAbierto = null"></app-ticket-chat>
                             </td>
                         </tr>
                     </ng-container>
@@ -56,4 +80,32 @@
             </table>
         </div>
     </main>
+</div>
+
+<!-- Modal Asignar Técnico -->
+<div class="modal-backdrop" *ngIf="modalAsignarAbierto">
+    <div class="modal-asignar">
+        <div class="modal-header">
+            <span>Asignar Técnico a Ticket #{{ ticketSeleccionado?.id }}</span>
+            <button class="modal-close" (click)="cerrarModalAsignar()">✕</button>
+        </div>
+        <div class="modal-body">
+            <h4>Datos del Ticket</h4>
+            <ul class="ticket-datos">
+                <li><b>Asunto:</b> {{ ticketSeleccionado?.asunto }}</li>
+                <li><b>Descripción:</b> {{ ticketSeleccionado?.descripcion }}</li>
+                <li><b>Solicitante:</b> {{ ticketSeleccionado?.usuario?.nombre }}</li>
+            </ul>
+            <h4>Selecciona un técnico</h4>
+            <select [(ngModel)]="tecnicoAsignado" class="select-tecnico">
+                <option *ngFor="let t of tecnicos" [value]="t.nombre">
+                    {{ t.nombre }} ({{ t.ticketsAsignados }} tickets asignados)
+                </option>
+            </select>
+        </div>
+        <div class="modal-footer">
+            <button class="btn-cancelar" (click)="cerrarModalAsignar()">Cancelar</button>
+            <button class="btn-asignar" [disabled]="!tecnicoAsignado" (click)="asignarTecnico()">Asignar</button>
+        </div>
+    </div>
 </div>

@@ -5,7 +5,8 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
 import { ModalSoliciudComponent } from '../modal-soliciud/modal-soliciud.component';
 import { SolicitudChatComponent, SolicitudDetalle } from '../solicitud-chat/solicitud-chat.component';
 import { ModalEditarSolicitudComponent } from '../modal-editar-solicitud/modal-editar-solicitud.component';
-
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
 
 @Component({
   selector: 'app-solicitudes',
@@ -123,28 +124,83 @@ export class SolicitudesComponent {
   }
 
   deleteRequest(id: number): void {
-    const confirmed = window.confirm(`¿Estás seguro de que quieres eliminar la solicitud ${id}?`);
+    const confirmed = window.confirm(`¿Estás seguro de que quieres cancelar la solicitud ${id}?`);
     if (confirmed) {
-      alert(`Solicitud ${id} eliminada`);
-      this.solicitudes = this.solicitudes.filter(solicitud => solicitud.id !== id);
-      if (this.solicitudSeleccionada && this.solicitudSeleccionada.id === id
-      ) {
-        this.solicitudSeleccionada = null;
-      }
-      if (this.chatAbiertoIndex === id) {
-        this.chatAbiertoIndex = null;
-      }
-      if (this.solicitudEditar && this.solicitudEditar.id === id) {
+      const solicitud = this.solicitudes.find(s => s.id === id);
+      if (solicitud) {
+        solicitud.estado = 'Cancelada';
+        alert(`Solicitud ${id} cancelada`);
+        if (this.solicitudSeleccionada && this.solicitudSeleccionada.id === id) {
+          this.solicitudSeleccionada.estado = 'Cancelada';
+        }
+        if (this.solicitudEditar && this.solicitudEditar.id === id) {
+          this.solicitudEditar.estado = 'Cancelada';
+        }
         this.cerrarModalEditar();
+        this.cerrarModal();
+        this.chatAbierto = false;
+        this.modalEditarAbierto = false;
+        this.solicitudEditar = null;
+        this.solicitudSeleccionada = null;
+        this.modalAbierto = false;
+        console.log(`Solicitud con ID ${id} marcada como cancelada`);
       }
-      this.cerrarModal();
-      this.chatAbierto = false;
-      this.modalEditarAbierto = false;
-      this.solicitudEditar = null;
-      this.solicitudSeleccionada = null;
-      this.modalAbierto = false;
-      console.log(`Solicitud con ID ${id} eliminada`);
     }
+  }
+
+  exportarSolicitudes(): void {
+    const doc = new jsPDF();
+    const title = 'Listado de Solicitudes';
+
+    doc.setFontSize(18);
+    doc.setTextColor(238, 114, 2);
+    doc.setFont('helvetica', 'bold');
+    doc.text(title, 14, 15);
+    doc.setTextColor(0, 0, 0);
+    doc.setFont('helvetica', 'normal');
+
+    const headers = [['ID', 'Tipo', 'Fecha Inicio', 'Fecha Fin', 'Duracion' ,'Motivo', 'Estado', 'Fecha Solicitud']];
+    const data = this.solicitudes.map(s => [
+      s.id ?? 'N/A',
+      s.tipo ?? 'N/A',
+      this.formatFecha(s.fechaInicio),
+      this.formatFecha(s.fechaFin),
+      s.duracion ?? 'N/A',
+      s.motivo ?? 'N/A',
+      s.estado ?? 'N/A',
+      this.formatFecha(s.fechaSolicitud)
+    ]);
+
+    autoTable(doc, {
+      head: headers,
+      body: data,
+      startY: 25,
+      styles: {
+        cellPadding: 3,
+        fontSize: 9,
+      },
+      headStyles: {
+        fillColor: [238, 114, 2],
+        textColor: [255, 255, 255],
+      },
+    });
+
+    // Pie de página
+    doc.setFontSize(10);
+    doc.text('Horizons 1.0.0 - Gestión de Solicitudes', 14, doc.internal.pageSize.height - 10);
+
+    // Guardar el PDF
+    doc.save('solicitudes.pdf');
+  }
+
+  private formatFecha(fecha: string | undefined): string {
+    if (!fecha) return 'N/A';
+    const date = new Date(fecha);
+    return date.toLocaleDateString('es-ES', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    });
   }
 
 }

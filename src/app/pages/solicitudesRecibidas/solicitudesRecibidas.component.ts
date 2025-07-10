@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../header/header.component';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { SolicitudChatComponent, ComentarioSolicitud } from '../solicitud-chat/solicitud-chat.component';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
 
 interface SolicitudDetalle {
   id: number;
@@ -14,7 +16,7 @@ interface SolicitudDetalle {
   estado?: string;
   duracion?: string;
   fechaSolicitud: string;
-  comentarios?:  ComentarioSolicitud[];
+  comentarios?: ComentarioSolicitud[];
 }
 
 @Component({
@@ -87,7 +89,7 @@ export class SolicitudesRecibidasComponent {
       motivo: "Enfermedad temporal",
       estado: "Pendiente",
       fechaSolicitud: "2024-02-25"
-    },{
+    }, {
       id: 6,
       empleado: "Carlos Ruiz",
       tipo: "Capacitación Interna",
@@ -112,11 +114,11 @@ export class SolicitudesRecibidasComponent {
     },
   ];
 
-usuarioActual = {
-  nombre: 'Ana Garcia Morales',
-  rol: 'Owner',
-  email: 'ana.garcia@badak.mx',
-};
+  usuarioActual = {
+    nombre: 'Ana Garcia Morales',
+    rol: 'Owner',
+    email: 'ana.garcia@badak.mx',
+  };
 
   chatAbierto: number | null = null;
 
@@ -138,6 +140,62 @@ usuarioActual = {
       this.solicitudesRecibidas[idx].estado = 'Rechazado';
       alert(`Solicitud ID ${id} rechazada.`);
     }
+  }
+
+  exportarSolicitudes(): void {
+    const doc = new jsPDF();
+    const title = 'Listado de Solicitudes Recibidas';
+
+    doc.setFontSize(18);
+    doc.setTextColor(238, 114, 2);
+    doc.setFont('helvetica', 'bold');
+    doc.text(title, 14, 15);
+    doc.setTextColor(0, 0, 0);
+    doc.setFont('helvetica', 'normal');
+
+    const headers = [['ID', 'Empleado', 'Tipo', 'Fecha Inicio', 'Fecha Fin', 'Duracion', 'Motivo', 'Estado', 'Fecha Solicitud']];
+    const data = this.solicitudesRecibidas.map(s => [
+      s.id,
+      s.empleado || 'N/A',
+      s.tipo || 'N/A',
+      this.formatFecha(s.fechaInicio),
+      this.formatFecha(s.fechaFin),
+      s.duracion || 'N/A',
+      s.motivo || 'N/A',
+      s.estado || 'N/A',
+      this.formatFecha(s.fechaSolicitud)
+    ]);
+
+    autoTable(doc, {
+      head: headers,
+      body: data,
+      startY: 25,
+      styles: {
+        cellPadding: 3,
+        fontSize: 9,
+      },
+      headStyles: {
+        fillColor: [238, 114, 2],
+        textColor: [255, 255, 255],
+      },
+    });
+
+    // Pie de página
+    doc.setFontSize(10);
+    doc.text('Horizons 1.0.0 - Gestión de Solicitudes', 14, doc.internal.pageSize.height - 10);
+
+    // Guardar el PDF
+    doc.save('solicitudes_recibidas.pdf');
+  }
+
+  private formatFecha(fecha: string | undefined): string {
+    if (!fecha) return 'N/A';
+    const date = new Date(fecha);
+    return date.toLocaleDateString('es-MX', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    });
   }
 }
 

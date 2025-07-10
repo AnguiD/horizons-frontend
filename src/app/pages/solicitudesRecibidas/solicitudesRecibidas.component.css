@@ -17,7 +17,10 @@
 }
 
 .page-header {
-    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
 }
 
 .page-title {
@@ -152,4 +155,27 @@
         padding: 0.75rem;
         font-size: 0.85rem;
     }
+}
+
+.acciones-header {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.export-btn {
+    background: #fff3e6;
+    color: #ee7202;
+    border: 1.5px solid #ee7202;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.6rem 1.2rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.export-btn:hover {
+    background: #ee7202;
+    color: white;
 }

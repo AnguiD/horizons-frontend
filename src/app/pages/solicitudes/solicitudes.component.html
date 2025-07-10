@@ -6,9 +6,15 @@
   <main class="main-content">
     <div class="page-header">
       <h1 class="page-title">Mis Solicitudes</h1>
-      <button class="new-request-btn" (click)="newRequest()">
-        Nueva Solicitud
-      </button>
+      <div class="acciones-header">
+        <button class="new-request-btn" (click)="newRequest()">
+          Nueva Solicitud
+        </button>
+        <button class="export-btn" (click)="exportarSolicitudes()">
+          Exportar Solicitudes
+        </button>
+      </div>
+
     </div>
     <div class="filters">
       <div class="filter-group">
@@ -57,7 +63,7 @@
         <div class="request-status" [ngClass]="{
           'status-pending': solicitud.estado === 'Pendiente' || !solicitud.estado,
           'status-approved': solicitud.estado === 'Aprobado',
-          'status-rejected': solicitud.estado === 'Rechazado'
+          'status-rejected': solicitud.estado === 'Rechazado' || solicitud.estado === 'Cancelada'
         }">
           {{ solicitud.estado || 'Pendiente' }}
         </div>
@@ -70,7 +76,7 @@
               Editar
             </button>
             <button class="action-btn delete-btn" (click)="deleteRequest(solicitud.id)">
-              Eliminar
+              Cancelar
             </button>
           </ng-container>
         </div>
